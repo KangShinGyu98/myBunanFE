@@ -16,7 +16,7 @@ export interface Music {
   country: string;
 }
 
-const useGames = (musicQuery: MusicQuery) =>
+const useMusics = (musicQuery: MusicQuery) =>
   useData<Music>(
     "/musics",
     {
@@ -30,4 +30,4 @@ const useGames = (musicQuery: MusicQuery) =>
     [musicQuery]
   );
 
-export default useGames;
+export default useMusics;
