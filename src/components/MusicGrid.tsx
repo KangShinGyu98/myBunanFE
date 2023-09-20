@@ -19,7 +19,7 @@ const MusicGrid = ({ musicQuery }: Props) => {
   const skeletons = [1, 2, 3, 4, 5, 6];
 
   if (error) return <Text>{error}</Text>;
-
+  console.log("music grid ", data);
   return (
     <SimpleGrid columns={{ sm: 1, md: 2, lg: 3, xl: 4 }} padding="10px" spacing={6}>
       {isLoading &&

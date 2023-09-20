@@ -10,10 +10,10 @@ const SortSelector = ({ onSelectSortOrder, sortOrder }: Props) => {
   const sortOrders = [
     { value: "", label: "Relevance" },
     { value: "-added", label: "Date added" },
-    { value: "name", label: "Name" },
-    { value: "-released", label: "Release date" },
-    { value: "-metacritic", label: "Popularity" },
-    { value: "-rating", label: "Average rating" },
+    { value: "-released", label: "발매순" },
+    { value: "-metacritic", label: "인기순" },
+    //youtube 조회순 이런것도 좋겠다.
+    { value: "-rating", label: "좋아요순" },
   ];
 
   const currentSortOrder = sortOrders.find((order) => order.value === sortOrder);
@@ -21,7 +21,7 @@ const SortSelector = ({ onSelectSortOrder, sortOrder }: Props) => {
   return (
     <Menu>
       <MenuButton as={Button} rightIcon={<BsChevronDown />}>
-        Order by: {currentSortOrder?.label || "Relevance"}
+        정렬 : {currentSortOrder?.label}
       </MenuButton>
       <MenuList>
         {sortOrders.map((order) => (

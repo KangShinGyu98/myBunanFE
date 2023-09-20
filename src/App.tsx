@@ -7,8 +7,8 @@ import GenreList from "./components/GenreList";
 import MainGameList from "./pages/MainGameList";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import MainMusicList from "./pages/MainMusicList";
-import { Tag } from "./hooks/useMusics";
 import { Country } from "./hooks/useCountries";
+import CountryList from "./components/CountryList";
 
 export interface GameQuery {
   genre: Genre | null;
@@ -18,7 +18,7 @@ export interface GameQuery {
 }
 export interface MusicQuery {
   genre: Genre | null;
-  tag: Tag;
+  tags: string[];
   country: Country | null;
   sortOrder: string;
   searchText: string;
@@ -41,12 +41,15 @@ function App() {
         }}
       >
         <GridItem area="nav">
-          <NavBar onSearch={(searchText) => setMusicQuery({ ...musicQuery, searchText })} />
+          <NavBar
+            onSearch={(searchText) => setMusicQuery({ ...musicQuery, searchText })}
+            setMusicQueryEmpty={() => setMusicQuery({} as MusicQuery)}
+          />
         </GridItem>
 
         <Show above="lg">
           <GridItem area="aside" paddingX={5}>
-            <GenreList selectedGenre={musicQuery.genre} onSelectGenre={(genre) => setMusicQuery({ ...musicQuery, genre })} />
+            <CountryList selectedCountry={musicQuery.country} onSelectCountry={(country) => setMusicQuery({ ...musicQuery, country })} />
             <GenreList selectedGenre={musicQuery.genre} onSelectGenre={(genre) => setMusicQuery({ ...musicQuery, genre })} />
           </GridItem>
         </Show>

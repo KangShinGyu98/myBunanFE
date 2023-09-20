@@ -5,6 +5,7 @@ import MusicHeading from "../components/MusicHeading";
 import CountrySelector from "../components/CountrySelector";
 import SortSelector from "../components/SortSelector";
 import MusicGrid from "../components/MusicGrid";
+import GenreSelector from "../components/GenreSelector";
 
 export interface MainMusicListProps {
   musicQuery: MusicQuery;
@@ -19,6 +20,9 @@ const MainMusicList = ({ musicQuery, setMusicQuery }: MainMusicListProps) => {
         <Flex marginBottom={5}>
           <Box marginRight={5}>
             <CountrySelector selectedCountry={musicQuery.country} onSelectCountry={(country) => setMusicQuery({ ...musicQuery, country })} />
+          </Box>
+          <Box marginRight={5}>
+            <GenreSelector selectedGenre={musicQuery.genre} onSelectGenre={(genre) => setMusicQuery({ ...musicQuery, genre })} />
           </Box>
           <SortSelector sortOrder={musicQuery.sortOrder} onSelectSortOrder={(sortOrder) => setMusicQuery({ ...musicQuery, sortOrder })} />
         </Flex>

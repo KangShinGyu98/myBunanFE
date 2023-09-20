@@ -14,18 +14,20 @@ interface Props {
 const MusicCard = ({ music }: Props) => {
   return (
     <Card>
-      {/* <Image src={getCroppedImageUrl(game.background_image)} /> */}
       <Image src={music.background_image} />
       <CardBody>
         <HStack justifyContent="space-between" marginBottom={3}>
-          {music.tags.map((tag) => (
-            <Tag key={tag.id}>{tag.name}</Tag>
-          ))}
           <Text>{music.country}</Text>
-          {/* <PlatformIconList platforms={game.parent_platforms?.map((p) => p.platform)} /> */}
-          {/* <CriticScore score={game.metacritic} /> */}
+          <Text>{music.genre}</Text>
           {/* //add music likey and tags */}
         </HStack>
+        <HStack>
+          {music.tags.map((tag, idx) => (
+            <Tag key={idx}>{tag}</Tag>
+          ))}
+        </HStack>
+        <Text> 가수 : {music.singer}</Text>
+
         <Heading fontSize="2xl">
           {music.name}
           {/* <Emoji rating={game.rating_top} /> */}
