@@ -5,11 +5,12 @@ export interface Music {
   id: number;
   name: string;
   singer: string;
-  background_image: string;
   tags: String[];
   likes: number;
+  views: number;
   country: string;
   genre: string;
+  videoId: string;
 }
 
 const useMusics = (musicQuery: MusicQuery) =>
@@ -17,8 +18,8 @@ const useMusics = (musicQuery: MusicQuery) =>
     "/musics",
     {
       params: {
-        country: musicQuery.country?.id,
-        genres: musicQuery.genre?.id,
+        countryId: musicQuery.country?.id,
+        genreId: musicQuery.genre?.id,
         tags: musicQuery.tags,
         ordering: musicQuery.sortOrder,
         search: musicQuery.searchText,

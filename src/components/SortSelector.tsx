@@ -8,12 +8,11 @@ interface Props {
 
 const SortSelector = ({ onSelectSortOrder, sortOrder }: Props) => {
   const sortOrders = [
-    { value: "", label: "Relevance" },
-    { value: "-added", label: "Date added" },
-    { value: "-released", label: "발매순" },
-    { value: "-metacritic", label: "인기순" },
+    { value: "posted", label: "등록순" },
+    { value: "released", label: "발매일(최신곡)" },
+    { value: "views", label: "조회수" },
     //youtube 조회순 이런것도 좋겠다.
-    { value: "-rating", label: "좋아요순" },
+    { value: "likes", label: "좋아요" },
   ];
 
   const currentSortOrder = sortOrders.find((order) => order.value === sortOrder);
