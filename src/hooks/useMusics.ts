@@ -3,7 +3,7 @@ import useData from "./useData";
 
 export interface Music {
   id: number;
-  name: string;
+  title: string;
   singer: string;
   tags: String[];
   likes: number;
@@ -11,6 +11,8 @@ export interface Music {
   country: string;
   genre: string;
   videoId: string;
+  posted: Date;
+  released: Date;
 }
 
 const useMusics = (musicQuery: MusicQuery) =>
@@ -18,8 +20,8 @@ const useMusics = (musicQuery: MusicQuery) =>
     "/musics",
     {
       params: {
-        countryId: musicQuery.country?.id,
-        genreId: musicQuery.genre?.id,
+        country: musicQuery.country?.name,
+        genre: musicQuery.genre?.name,
         tags: musicQuery.tags,
         ordering: musicQuery.sortOrder,
         search: musicQuery.searchText,

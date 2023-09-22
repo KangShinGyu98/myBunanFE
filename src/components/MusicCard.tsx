@@ -49,15 +49,21 @@ const MusicCard = ({ music }: Props) => {
           <Text>{music.genre}</Text>
           {/* //add music likey and tags */}
         </HStack>
+
         <HStack>
           {music.tags.map((tag, idx) => (
             <Tag key={idx}>{tag}</Tag>
           ))}
         </HStack>
         <Text> 가수 : {music.singer}</Text>
+        <Text> 좋아요 : {music.likes}</Text>
+        <Text> 조회수 : {music.views}</Text>
+        <Text> 등록일 : {music.posted.toString()}</Text>
+        <Text> 발매일 : {music.released.toString()}</Text>
+        <Text> 국가 : {music.country} </Text>
 
         <Heading fontSize="2xl">
-          {music.name}
+          {music.title}
           {/* <Emoji rating={game.rating_top} /> */}
         </Heading>
       </CardBody>
