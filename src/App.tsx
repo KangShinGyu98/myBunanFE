@@ -9,6 +9,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import MainMusicList from "./pages/MainMusicList";
 import { Country } from "./hooks/useCountries";
 import CountryList from "./components/CountryList";
+import MusicPost from "./components/MusicPost";
 
 export interface GameQuery {
   genre: Genre | null;
@@ -57,6 +58,7 @@ function App() {
         <GridItem area="main">
           <Routes>
             <Route path="/" element={<MainMusicList musicQuery={musicQuery} setMusicQuery={setMusicQuery} />} />
+            <Route path="/musics/:id" element={<MusicPost />} />
             <Route path="/game" element={<MainGameList gameQuery={gameQuery} setGameQuery={setGameQuery} />} />
           </Routes>
         </GridItem>

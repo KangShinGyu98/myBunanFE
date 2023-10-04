@@ -24,7 +24,7 @@ export default [
   },
   {
     "id": 5,
-    "name": "잉글랜드 (Jamaica) ",
+    "name": "잉글랜드 (Jamaica)",
     "image_background": "https://media.rawg.io/media/games/40a/40ab95c1639aa1d7ec04d4cd523af6b1.jpg"
     
   },
