@@ -1,22 +1,15 @@
 import { Box, Flex, Grid, GridItem, HStack, Show } from "@chakra-ui/react";
 import { useState } from "react";
 import { Genre } from "./hooks/useGenres";
-import { Platform } from "./hooks/useGames";
 import NavBar from "./components/NavBar";
 import GenreList from "./components/GenreList";
-import MainGameList from "./pages/MainGameList";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import MainMusicList from "./pages/MainMusicList";
 import { Country } from "./hooks/useCountries";
 import CountryList from "./components/CountryList";
-import MusicPost from "./components/MusicPost";
+import MusicPost from "./pages/MusicPost";
+import CreateNewMusic from "./pages/CreateNewMusic";
 
-export interface GameQuery {
-  genre: Genre | null;
-  platform: Platform;
-  sortOrder: string;
-  searchText: string;
-}
 export interface MusicQuery {
   genre: Genre | null;
   tags: string[];
@@ -26,7 +19,6 @@ export interface MusicQuery {
 }
 
 function App() {
-  const [gameQuery, setGameQuery] = useState<GameQuery>({} as GameQuery);
   const [musicQuery, setMusicQuery] = useState<MusicQuery>({} as MusicQuery);
 
   return (
@@ -59,7 +51,7 @@ function App() {
           <Routes>
             <Route path="/" element={<MainMusicList musicQuery={musicQuery} setMusicQuery={setMusicQuery} />} />
             <Route path="/musics/:id" element={<MusicPost />} />
-            <Route path="/game" element={<MainGameList gameQuery={gameQuery} setGameQuery={setGameQuery} />} />
+            <Route path="/create" element={<CreateNewMusic />} />
           </Routes>
         </GridItem>
       </Grid>

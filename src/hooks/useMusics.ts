@@ -1,10 +1,13 @@
-import { GameQuery, MusicQuery } from "../App";
+import { MusicQuery } from "../App";
 import useData from "./useData";
 
+//받을 때
 export interface Music {
   id: number;
   title: string;
   singer: string;
+  songWriter: string;
+  postWriter: string;
   tags: String[];
   likes: number;
   views: number;

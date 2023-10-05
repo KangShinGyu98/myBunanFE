@@ -1,10 +1,10 @@
 import { useParams } from "react-router-dom";
 import YouTube from "react-youtube";
-import LylicsGrid from "./LyricsGrid";
+import LylicsGrid from "../components/LyricsGrid";
 import useLylics from "../hooks/useLyrics";
 import useVideoId from "../hooks/useVideoId";
-import MusicCardContainer from "./MusicCardContainer";
-import MusicCardSkeleton from "./MusicCardSkeleton";
+import MusicCardContainer from "../components/MusicCardContainer";
+import MusicCardSkeleton from "../components/MusicCardSkeleton";
 
 const MusicPost = () => {
   const { id } = useParams(); // URL 파라미터에서 id를 가져옵니다.

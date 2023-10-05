@@ -39,7 +39,7 @@ const LyricCard = ({ lyric }: Props) => {
     console.log(comment);
   };
 
-  if (lyricComments) {
+  if (lyricComments.length > 0) {
     if (isOpened) {
       return (
         <>

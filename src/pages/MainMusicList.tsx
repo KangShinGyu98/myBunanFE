@@ -1,11 +1,12 @@
 import React from "react";
 import { MusicQuery } from "../App";
-import { Box, Flex } from "@chakra-ui/react";
+import { Box, Button, Flex } from "@chakra-ui/react";
 import MusicHeading from "../components/MusicHeading";
 import CountrySelector from "../components/CountrySelector";
 import SortSelector from "../components/SortSelector";
 import MusicGrid from "../components/MusicGrid";
 import GenreSelector from "../components/GenreSelector";
+import { Link } from "react-router-dom";
 
 export interface MainMusicListProps {
   musicQuery: MusicQuery;
@@ -25,6 +26,12 @@ const MainMusicList = ({ musicQuery, setMusicQuery }: MainMusicListProps) => {
             <GenreSelector selectedGenre={musicQuery.genre} onSelectGenre={(genre) => setMusicQuery({ ...musicQuery, genre })} />
           </Box>
           <SortSelector sortOrder={musicQuery.sortOrder} onSelectSortOrder={(sortOrder) => setMusicQuery({ ...musicQuery, sortOrder })} />
+
+          <Link to="/create">
+            <Button colorScheme="whatsapp" marginLeft={5} variant="solid">
+              새 글 작성
+            </Button>
+          </Link>
         </Flex>
       </Box>
       <MusicGrid musicQuery={musicQuery} />
