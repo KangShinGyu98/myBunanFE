@@ -13,11 +13,12 @@ export interface NewMusicQuery {
   country: Country | null;
   title: string;
   singer: string;
-  youtubeUrl: string;
+  videoId: string;
   songWriter: string;
   postWriter: string;
-  lyric: string;
-  lyricComment: string;
+  lyric: string[];
+  lyricComment: string[];
+  releasedDate: Date;
 }
 
 const MainMusicList = () => {

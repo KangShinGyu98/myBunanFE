@@ -40,6 +40,10 @@ const MusicCard = ({ music }: Props) => {
       </Box>
       <Link to={`/musics/${music.id}`}>
         <CardBody>
+          <Heading fontSize="2xl">
+            {music.title}
+            {/* <Emoji rating={game.rating_top} /> */}
+          </Heading>
           <HStack justifyContent="space-between" marginBottom={3}>
             <Text>{music.country}</Text>
             <Text>{music.genre}</Text>
@@ -55,13 +59,8 @@ const MusicCard = ({ music }: Props) => {
           <Text> 좋아요 : {music.likes}</Text>
           <Text> 조회수 : {music.views}</Text>
           <Text> 등록일 : {music.posted.toString()}</Text>
-          <Text> 발매일 : {music.released.toString()}</Text>
+          <Text> 발매일 : {music.released?.toString()}</Text>
           <Text> 국가 : {music.country} </Text>
-
-          <Heading fontSize="2xl">
-            {music.title}
-            {/* <Emoji rating={game.rating_top} /> */}
-          </Heading>
         </CardBody>
       </Link>
     </Card>
