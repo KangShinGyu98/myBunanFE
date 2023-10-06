@@ -10,9 +10,7 @@ interface Props {
 }
 
 const MusicGrid = ({ musicQuery }: Props) => {
-  console.log("music grid ", musicQuery);
   const { data, error, isLoading } = useMusics(musicQuery);
-  console.log("music data ", data);
   const skeletons = [1, 2, 3, 4, 5, 6];
 
   if (error) return <Text>{error}</Text>;

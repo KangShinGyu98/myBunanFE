@@ -16,9 +16,11 @@ export interface NewMusicQuery {
   videoId: string;
   songWriter: string;
   postWriter: string;
-  lyric: string[];
-  lyricComment: string[];
+  lyric: string;
+  lyricComment: string;
   releasedDate: Date;
+  arrangement: string;
+  lyricWriter: string;
 }
 
 const MainMusicList = () => {
