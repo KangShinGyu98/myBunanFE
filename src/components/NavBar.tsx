@@ -3,9 +3,8 @@ import logo from "../assets/logo.webp";
 import ColorModeSwitch from "./ColorModeSwitch";
 import SearchInput from "./SearchInput";
 import { Link } from "react-router-dom";
-import { MusicQuery } from "../App";
 import LoginModal from "./LoginModal";
-import RegisterModal from "./RegisterModal";
+import SignUpModal from "./SignUpModal";
 
 interface Props {
   onSearch: (searchText: string) => void;
@@ -21,7 +20,7 @@ const NavBar = ({ onSearch, setMusicQueryEmpty }: Props) => {
       <SearchInput onSearch={onSearch} />
       <ColorModeSwitch />
       <LoginModal />
-      <RegisterModal />
+      <SignUpModal />
     </HStack>
   );
 };

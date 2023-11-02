@@ -16,34 +16,31 @@ import {
 } from "@chakra-ui/react";
 import axios from "axios";
 import React, { useState } from "react";
-import { useAuthContext } from "../context/AuthContext";
 
-const LoginModal = () => {
+const SignUpModal = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   const initialRef = React.useRef(null);
   const toast = useToast();
 
+  const [nickname, setNickname] = useState("");
+  const handleNicknameChange = (e: React.ChangeEvent<HTMLInputElement>) => setNickname(e.target.value);
   const [email, setEmail] = useState("");
   const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => setEmail(e.target.value);
   const [password, setPassword] = useState("");
   const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => setPassword(e.target.value);
-  const { onAuthStateChange } = useAuthContext();
 
-  const login = async (e: React.FormEvent<HTMLFormElement>) => {
+  const signUp = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-      const response = await axios.post("http://localhost:8080/member/login", {
+      const response = await axios.post("http://localhost:8080/member/signUp", {
+        nickname: nickname,
         email: email,
         password: password,
       });
-      console.log("로그인 응답 데이터:", response);
-      document.cookie = `token=${response.data as string}; path=/`;
-      onAuthStateChange("login");
-
       toast({
-        title: "로그인에 성공했습니다.",
-        description: `${response.data.nickname} 님 환영합니다.`,
+        title: "회원가입이 성공했습니다.",
+        description: `${nickname} 님 환영합니다.`,
         status: "success",
         duration: 2000,
         isClosable: true,
@@ -52,7 +49,7 @@ const LoginModal = () => {
       onClose();
     } catch (error: any) {
       toast({
-        title: "실패",
+        title: "회원가입에 실패했습니다.",
         description: `${error?.response?.data}`,
         status: "error",
         duration: 4000,
@@ -63,15 +60,20 @@ const LoginModal = () => {
   };
   return (
     <>
-      <Button onClick={onOpen}>로그인</Button>
+      <Button onClick={onOpen}>회원가입</Button>
 
       <Modal initialFocusRef={initialRef} isOpen={isOpen} onClose={onClose} isCentered>
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader>로그인</ModalHeader>
+          <ModalHeader>회원가입</ModalHeader>
           <ModalCloseButton />
-          <form onSubmit={login}>
+          <form onSubmit={signUp}>
             <ModalBody pb={6}>
+              <FormControl mb={2} isRequired>
+                <FormLabel>닉네임</FormLabel>
+                <Input name="nickname" ref={initialRef} placeholder="별명" type="text" onChange={handleNicknameChange} />
+                <FormHelperText>사이트에서 사용할 별명을 정해주세요</FormHelperText>
+              </FormControl>
               <FormControl mb={2} isRequired>
                 <FormLabel>이메일</FormLabel>
                 <Input name="email" placeholder="email@naver.com" type="email" onChange={handleEmailChange} />
@@ -79,13 +81,12 @@ const LoginModal = () => {
               <FormControl isRequired>
                 <FormLabel>비밀번호</FormLabel>
                 <Input name="password" placeholder="**********" type="password" onChange={handlePasswordChange} />
-                <FormHelperText>비밀번호는 8~16자 영문 대 소문자, 숫자, 특수문자를 사용하세요.</FormHelperText>
               </FormControl>
             </ModalBody>
 
             <ModalFooter>
               <Button type="submit" colorScheme="blue" mr={3}>
-                로그인
+                회원가입
               </Button>
               <Button onClick={onClose}>취소</Button>
             </ModalFooter>
@@ -96,4 +97,4 @@ const LoginModal = () => {
   );
 };
 
-export default LoginModal;
+export default SignUpModal;

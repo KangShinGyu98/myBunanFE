@@ -3,7 +3,6 @@ import { Genre } from "./hooks/useGenres";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Country } from "./hooks/useCountries";
 import MainPage from "./pages/MainPage";
-import LoginPage from "./pages/LoginPage";
 
 export interface MusicQuery {
   genre: Genre | null;
@@ -20,7 +19,6 @@ function App() {
     <BrowserRouter>
       <Routes>
         {/* public */}
-        <Route path="/login/*" element={<LoginPage />} />
         <Route path="*" element={<MainPage />} />
         {/* private */}
 
