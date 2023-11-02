@@ -4,6 +4,8 @@ import ColorModeSwitch from "./ColorModeSwitch";
 import SearchInput from "./SearchInput";
 import { Link } from "react-router-dom";
 import { MusicQuery } from "../App";
+import LoginModal from "./LoginModal";
+import RegisterModal from "./RegisterModal";
 
 interface Props {
   onSearch: (searchText: string) => void;
@@ -18,6 +20,8 @@ const NavBar = ({ onSearch, setMusicQueryEmpty }: Props) => {
       </Link>
       <SearchInput onSearch={onSearch} />
       <ColorModeSwitch />
+      <LoginModal />
+      <RegisterModal />
     </HStack>
   );
 };
