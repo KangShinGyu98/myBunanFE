@@ -1,4 +1,4 @@
-import { Button, HStack, Image, useToast } from "@chakra-ui/react";
+import { Button, HStack, Image, useToast, Text, Box } from "@chakra-ui/react";
 import logo from "../assets/logo.webp";
 import ColorModeSwitch from "./ColorModeSwitch";
 import SearchInput from "./SearchInput";
@@ -40,9 +40,14 @@ const NavBar = ({ onSearch, setMusicQueryEmpty }: Props) => {
           <SignUpModal />
         </>
       ) : (
-        <Button colorScheme="blue" mr={3} onClick={handleLogout}>
-          로그아웃
-        </Button>
+        <>
+          <Text whiteSpace={"nowrap"} textOverflow={"ellipsis"} maxWidth={"300px"}>
+            {`${user?.nickname}님`}
+          </Text>
+          <Button colorScheme="blue" mr={3} onClick={handleLogout}>
+            로그아웃
+          </Button>
+        </>
       )}
     </HStack>
   );
