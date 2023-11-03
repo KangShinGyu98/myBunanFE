@@ -4,6 +4,8 @@ import {
   FormHelperText,
   FormLabel,
   Input,
+  InputGroup,
+  InputRightElement,
   Modal,
   ModalBody,
   ModalCloseButton,
@@ -30,6 +32,33 @@ const SignUpModal = () => {
   const [password, setPassword] = useState("");
   const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => setPassword(e.target.value);
 
+  const nicknameCheck = async (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    try {
+      const response = await axios.post("http://localhost:8080/member/nicknameCheck", {
+        nickname: nickname,
+      });
+      toast({
+        position: "top",
+        title: `${nickname} 은 사용가능 합니다.`,
+        status: "success",
+        duration: 2000,
+        isClosable: true,
+      });
+      // 성공적으로 요청을 보냈을 때의 처리
+    } catch (error: any) {
+      toast({
+        position: "top",
+        title: `${nickname} 은 사용할 수 없습니다.`,
+        description: `${error?.response?.data}`,
+        status: "error",
+        duration: 2000,
+        isClosable: true,
+      });
+      // 요청 실패 시의 처리
+    }
+  };
+
   const signUp = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
@@ -39,6 +68,7 @@ const SignUpModal = () => {
         password: password,
       });
       toast({
+        position: "top",
         title: "회원가입이 성공했습니다.",
         description: `${nickname} 님 환영합니다.`,
         status: "success",
@@ -49,6 +79,7 @@ const SignUpModal = () => {
       onClose();
     } catch (error: any) {
       toast({
+        position: "top",
         title: "회원가입에 실패했습니다.",
         description: `${error?.response?.data}`,
         status: "error",
@@ -71,7 +102,14 @@ const SignUpModal = () => {
             <ModalBody pb={6}>
               <FormControl mb={2} isRequired>
                 <FormLabel>닉네임</FormLabel>
-                <Input name="nickname" ref={initialRef} placeholder="별명" type="text" onChange={handleNicknameChange} />
+                <InputGroup>
+                  <Input name="nickname" ref={initialRef} placeholder="별명" type="text" onChange={handleNicknameChange} />
+                  <InputRightElement width="4.5rem">
+                    <Button mr={2} h="1.75rem" size="sm" onClick={nicknameCheck}>
+                      중복확인
+                    </Button>
+                  </InputRightElement>
+                </InputGroup>
                 <FormHelperText>사이트에서 사용할 별명을 정해주세요</FormHelperText>
               </FormControl>
               <FormControl mb={2} isRequired>

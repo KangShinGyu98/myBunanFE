@@ -70,7 +70,7 @@ export function useAuthContext() {
   return useContext(AuthContext);
 }
 
-function getToken(name: string) {
+export function getToken(name: string) {
   const value = `; ${document.cookie}`;
   const parts = value.split(`; ${name}=`);
   if (parts.length === 2) {
@@ -78,20 +78,50 @@ function getToken(name: string) {
     return part && part.split(";").shift();
   }
 }
-
-function decodeToken(token: string): User | null {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+export function decodeToken(token: string): User | null {
   const [headerEncoded, payloadEncoded] = token.split(".");
 
-  const payloadStr = atob(payloadEncoded);
-
-  const payloadObj = JSON.parse(payloadStr);
+  // 대체된 base64urlDecode 함수를 사용하여 payload를 디코딩합니다.
+  const payloadStr = base64urlDecode(payloadEncoded);
+  const payloadObj: User = JSON.parse(payloadStr);
 
   const currentTimestamp = Math.floor(Date.now() / 1000);
 
   if (payloadObj.exp && payloadObj.exp < currentTimestamp) {
+    // 토큰이 만료되었다면 null을 반환합니다.
     return null;
   }
 
   return payloadObj;
+}
+
+// Base64Url 디코딩 함수
+function base64urlDecode(str: string): string {
+  // '-'는 '+'로, '_'는 '/'로 대체합니다.
+  let output = str.replace(/-/g, "+").replace(/_/g, "/");
+  // Base64 문자열이 올바르게 padding 되도록 '='를 추가합니다.
+  switch (output.length % 4) {
+    case 0:
+      break;
+    case 2:
+      output += "==";
+      break;
+    case 3:
+      output += "=";
+      break;
+    default:
+      throw new Error("Illegal base64url string!");
+  }
+
+  // Base64를 디코드하고, encodeURIComponent로 인코딩된 문자열을 원래 문자로 변환합니다.
+  const decodedData = decodeURIComponent(
+    atob(output)
+      .split("")
+      .map((c) => {
+        return "%" + ("00" + c.charCodeAt(0).toString(16)).slice(-2);
+      })
+      .join("")
+  );
+
+  return decodedData;
 }

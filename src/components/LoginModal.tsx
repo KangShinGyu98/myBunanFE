@@ -16,7 +16,7 @@ import {
 } from "@chakra-ui/react";
 import axios from "axios";
 import React, { useState } from "react";
-import { useAuthContext } from "../context/AuthContext";
+import { decodeToken, getToken, useAuthContext, User } from "../context/AuthContext";
 
 const LoginModal = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -28,7 +28,7 @@ const LoginModal = () => {
   const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => setEmail(e.target.value);
   const [password, setPassword] = useState("");
   const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => setPassword(e.target.value);
-  const { onAuthStateChange } = useAuthContext();
+  const { onAuthStateChange, user } = useAuthContext();
 
   const login = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -37,13 +37,16 @@ const LoginModal = () => {
         email: email,
         password: password,
       });
-      console.log("로그인 응답 데이터:", response);
+
       document.cookie = `token=${response.data as string}; path=/`;
       onAuthStateChange("login");
-
+      const token = response.data as string;
+      const nickname = decodeToken(token)?.nickname || null;
       toast({
+        position: "top",
         title: "로그인에 성공했습니다.",
-        description: `${response.data.nickname} 님 환영합니다.`,
+        // description: `${response.data.nickname} 님 환영합니다.`,
+        description: `${nickname} 님 환영합니다.`,
         status: "success",
         duration: 2000,
         isClosable: true,
@@ -52,6 +55,7 @@ const LoginModal = () => {
       onClose();
     } catch (error: any) {
       toast({
+        position: "top",
         title: "실패",
         description: `${error?.response?.data}`,
         status: "error",
