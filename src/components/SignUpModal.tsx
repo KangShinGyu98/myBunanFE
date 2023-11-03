@@ -24,6 +24,7 @@ const SignUpModal = () => {
 
   const initialRef = React.useRef(null);
   const toast = useToast();
+  const toastIdRef = React.useRef();
 
   const [nickname, setNickname] = useState("");
   const handleNicknameChange = (e: React.ChangeEvent<HTMLInputElement>) => setNickname(e.target.value);
@@ -31,6 +32,8 @@ const SignUpModal = () => {
   const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => setEmail(e.target.value);
   const [password, setPassword] = useState("");
   const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => setPassword(e.target.value);
+  const [code, setCode] = useState("");
+  const handleCodeChange = (e: React.ChangeEvent<HTMLInputElement>) => setCode(e.target.value);
 
   const nicknameCheck = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
@@ -38,6 +41,11 @@ const SignUpModal = () => {
       const response = await axios.post("http://localhost:8080/member/nicknameCheck", {
         nickname: nickname,
       });
+
+      if (toastIdRef.current) {
+        toast.close(toastIdRef.current);
+      }
+
       toast({
         position: "top",
         title: `${nickname} 은 사용가능 합니다.`,
@@ -59,6 +67,39 @@ const SignUpModal = () => {
     }
   };
 
+  const emailCheckSend = async (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    toast({
+      position: "top",
+      title: `${email} 로 인증번호를 보내는 중입니다.`,
+      status: "loading",
+      isClosable: true,
+    });
+    try {
+      const response = await axios.post("http://localhost:8080/mail/email", {
+        email: email,
+      });
+
+      toast({
+        position: "top",
+        title: `${email} 로 인증번호를 보냈습니다.`,
+        status: "success",
+        duration: 2000,
+        isClosable: true,
+      });
+      // 성공적으로 요청을 보냈을 때의 처리
+    } catch (error: any) {
+      toast({
+        position: "top",
+        title: `${email} 은 사용할 수 없습니다.`,
+        description: `${error?.response?.data}`,
+        status: "error",
+        duration: 2000,
+        isClosable: true,
+      });
+      // 요청 실패 시의 처리
+    }
+  };
   const signUp = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
@@ -66,6 +107,7 @@ const SignUpModal = () => {
         nickname: nickname,
         email: email,
         password: password,
+        code: parseInt(code, 10),
       });
       toast({
         position: "top",
@@ -104,7 +146,7 @@ const SignUpModal = () => {
                 <FormLabel>닉네임</FormLabel>
                 <InputGroup>
                   <Input name="nickname" ref={initialRef} placeholder="별명" type="text" onChange={handleNicknameChange} />
-                  <InputRightElement width="4.5rem">
+                  <InputRightElement width="5rem">
                     <Button mr={2} h="1.75rem" size="sm" onClick={nicknameCheck}>
                       중복확인
                     </Button>
@@ -114,7 +156,21 @@ const SignUpModal = () => {
               </FormControl>
               <FormControl mb={2} isRequired>
                 <FormLabel>이메일</FormLabel>
-                <Input name="email" placeholder="email@naver.com" type="email" onChange={handleEmailChange} />
+                <InputGroup>
+                  <Input name="email" placeholder="email@naver.com" type="email" onChange={handleEmailChange} />
+                  <InputRightElement width="8rem">
+                    <Button mr={2} h="1.75rem" size="sm" onClick={emailCheckSend}>
+                      인증번호 보내기
+                    </Button>
+                  </InputRightElement>
+                </InputGroup>
+              </FormControl>
+              <FormControl mb={2} isRequired>
+                <FormLabel>이메일 인증번호</FormLabel>
+                <InputGroup>
+                  <Input name="code" placeholder="000000" type="text" onChange={handleCodeChange} />
+                </InputGroup>
+                <FormHelperText>공백을 주의하세요</FormHelperText>
               </FormControl>
               <FormControl isRequired>
                 <FormLabel>비밀번호</FormLabel>
