@@ -1,6 +1,7 @@
 import {
   Button,
   FormControl,
+  FormErrorMessage,
   FormHelperText,
   FormLabel,
   Input,
@@ -32,6 +33,8 @@ const SignUpModal = () => {
   const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => setEmail(e.target.value);
   const [password, setPassword] = useState("");
   const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => setPassword(e.target.value);
+  const [passwordCheck, setPasswordCheck] = useState("");
+  const handlePasswordCheckChange = (e: React.ChangeEvent<HTMLInputElement>) => setPasswordCheck(e.target.value);
   const [code, setCode] = useState("");
   const handleCodeChange = (e: React.ChangeEvent<HTMLInputElement>) => setCode(e.target.value);
 
@@ -107,6 +110,7 @@ const SignUpModal = () => {
         nickname: nickname,
         email: email,
         password: password,
+        passwordCheck: passwordCheck,
         code: parseInt(code, 10),
       });
       toast({
@@ -131,6 +135,7 @@ const SignUpModal = () => {
       // 요청 실패 시의 처리
     }
   };
+  const isError = password !== passwordCheck;
   return (
     <>
       <Button onClick={onOpen}>회원가입</Button>
@@ -172,9 +177,14 @@ const SignUpModal = () => {
                 </InputGroup>
                 <FormHelperText>공백을 주의하세요</FormHelperText>
               </FormControl>
-              <FormControl isRequired>
+              <FormControl mb={2} isRequired>
                 <FormLabel>비밀번호</FormLabel>
                 <Input name="password" placeholder="**********" type="password" onChange={handlePasswordChange} />
+              </FormControl>
+              <FormControl isRequired isInvalid={isError}>
+                <FormLabel>비밀번호 확인</FormLabel>
+                <Input name="passwordCheck" placeholder="**********" type="password" onChange={handlePasswordCheckChange} />
+                {isError && <FormErrorMessage>비밀번호와 일치하지 않습니다.</FormErrorMessage>}
               </FormControl>
             </ModalBody>
 
