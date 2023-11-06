@@ -6,6 +6,6 @@ export interface Country {
   image_background: string;
 }
 
-const useCountries = () => ({ data: countries, isLoading: false, error: null })
+const useCountries = () => ({ data: countries, isLoading: false, error: null });
 
 export default useCountries;

@@ -1,12 +1,10 @@
 import { Button, Heading, HStack, Image, List, ListItem, Spinner, Text } from "@chakra-ui/react";
-import getCroppedImageUrl from "../services/image-url";
 import useCountries, { Country } from "../hooks/useCountries";
 
 interface Props {
   onSelectCountry: (country: Country) => void;
   selectedCountry: Country | null;
 }
-
 const CountryList = ({ selectedCountry, onSelectCountry }: Props) => {
   const { data, isLoading, error } = useCountries();
 
@@ -23,7 +21,9 @@ const CountryList = ({ selectedCountry, onSelectCountry }: Props) => {
         {data.map((country) => (
           <ListItem key={country.id} paddingY="5px">
             <HStack>
+              {/* <Image boxSize="32px" borderRadius={8} objectFit="cover" src={CountryIcons[country.id].icon} /> */}
               <Image boxSize="32px" borderRadius={8} objectFit="cover" src={country.image_background} />
+
               <Button
                 whiteSpace="normal"
                 textAlign="left"
