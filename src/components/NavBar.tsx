@@ -33,7 +33,7 @@ const NavBar = ({ onSearch, setMusicQueryEmpty }: Props) => {
         <Image src={logo} boxSize="60px" onClick={setMusicQueryEmpty} />
       </Link>
       <SearchInput onSearch={onSearch} />
-      <ColorModeSwitch />
+      {/* <ColorModeSwitch /> */}
       {!user && !isInitializing ? (
         <>
           <LoginModal />
