@@ -19,13 +19,13 @@ import {
 } from "@chakra-ui/react";
 import axios from "axios";
 import React, { useState } from "react";
+import { useAuthContext } from "../context/AuthContext";
 
 const SignUpModal = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
-
+  const { onAuthStateChange } = useAuthContext();
   const initialRef = React.useRef(null);
   const toast = useToast();
-  const toastIdRef = React.useRef();
 
   const [nickname, setNickname] = useState("");
   const handleNicknameChange = (e: React.ChangeEvent<HTMLInputElement>) => setNickname(e.target.value);
@@ -44,10 +44,6 @@ const SignUpModal = () => {
       const response = await axios.post("http://localhost:8080/member/nicknameCheck", {
         nickname: nickname,
       });
-
-      if (toastIdRef.current) {
-        toast.close(toastIdRef.current);
-      }
 
       toast({
         position: "top",
@@ -76,6 +72,7 @@ const SignUpModal = () => {
       position: "top",
       title: `${email} 로 인증번호를 보내는 중입니다.`,
       status: "loading",
+      duration: 4000,
       isClosable: true,
     });
     try {
@@ -113,6 +110,10 @@ const SignUpModal = () => {
         passwordCheck: passwordCheck,
         code: parseInt(code, 10),
       });
+
+      document.cookie = `token=${response.data as string}; path=/`;
+      onAuthStateChange("login");
+
       toast({
         position: "top",
         title: "회원가입이 성공했습니다.",

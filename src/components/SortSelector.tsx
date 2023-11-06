@@ -2,7 +2,7 @@ import { Button, Menu, MenuButton, MenuItem, MenuList } from "@chakra-ui/react";
 import { BsChevronDown } from "react-icons/bs";
 
 interface Props {
-  onSelectSortOrder: (sortOrder: string) => void;
+  onSelectSortOrder: (sortOrder: string | null) => void;
   sortOrder: string;
 }
 
@@ -23,6 +23,9 @@ const SortSelector = ({ onSelectSortOrder, sortOrder }: Props) => {
         정렬 : {currentSortOrder?.label}
       </MenuButton>
       <MenuList>
+        <MenuItem onClick={() => onSelectSortOrder(null)} key={0}>
+          기본값(등록순)
+        </MenuItem>
         {sortOrders.map((order) => (
           <MenuItem onClick={() => onSelectSortOrder(order.value)} key={order.value} value={order.value}>
             {order.label}

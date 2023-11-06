@@ -5,7 +5,7 @@ import { BsChevronDown } from "react-icons/bs";
 import useCountries, { Country } from "../hooks/useCountries";
 
 interface Props {
-  onSelectCountry: (country: Country) => void;
+  onSelectCountry: (country: Country | null) => void;
   selectedCountry: Country | null;
 }
 
@@ -20,6 +20,9 @@ const CountrySelector = ({ onSelectCountry, selectedCountry }: Props) => {
         {selectedCountry?.name || "국가별"}
       </MenuButton>
       <MenuList>
+        <MenuItem onClick={() => onSelectCountry(null)} key={0}>
+          모든 국가
+        </MenuItem>
         {data.map((country) => (
           <MenuItem onClick={() => onSelectCountry(country)} key={country.id}>
             {country.name}

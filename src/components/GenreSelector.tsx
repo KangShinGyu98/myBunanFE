@@ -6,7 +6,7 @@ import useCountries, { Country } from "../hooks/useCountries";
 import useGenres, { Genre } from "../hooks/useGenres";
 
 interface Props {
-  onSelectGenre: (genre: Genre) => void;
+  onSelectGenre: (genre: Genre | null) => void;
   selectedGenre: Genre | null;
 }
 
@@ -21,6 +21,9 @@ const GenreSelector = ({ onSelectGenre, selectedGenre }: Props) => {
         {selectedGenre?.name || "장르별"}
       </MenuButton>
       <MenuList>
+        <MenuItem onClick={() => onSelectGenre(null)} key={0}>
+          모든 장르
+        </MenuItem>
         {data.map((genre) => (
           <MenuItem onClick={() => onSelectGenre(genre)} key={genre.id}>
             {genre.name}
