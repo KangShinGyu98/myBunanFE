@@ -39,6 +39,16 @@ const MainPage = () => {
       <Show above="lg">
         <GridItem area="aside" paddingX={5}>
           <CountryList selectedCountry={musicQuery.country} onSelectCountry={(country) => setMusicQuery({ ...musicQuery, country })} />
+          <hr
+            style={{
+              width: "95%",
+              textAlign: "center",
+              borderBottom: "1px solid #aaa",
+              lineHeight: "0.2em",
+              marginTop: "10px",
+            }}
+          />
+
           <GenreList selectedGenre={musicQuery.genre} onSelectGenre={(genre) => setMusicQuery({ ...musicQuery, genre })} />
         </GridItem>
       </Show>

@@ -1,26 +1,31 @@
 export default [
-  { id: 1, name: "댄스/팝", image_background: "https://bunan-image-bucket.s3.ap-northeast-2.amazonaws.com/genres/dance_pop.svg" },
+  { id: 1, name: "댄스/팝", image_background: "https://bunan-image-bucket.s3.ap-northeast-2.amazonaws.com/genres/pop.jpg" },
   {
     id: 2,
     name: "포크/어쿠스틱/컨트리",
-    image_background: "https://bunan-image-bucket.s3.ap-northeast-2.amazonaws.com/genres/folk_acoustic_country.svg",
+    image_background: "https://bunan-image-bucket.s3.ap-northeast-2.amazonaws.com/genres/acoustic.jpg",
   },
-  { id: 3, name: "랩/힙합", image_background: "https://bunan-image-bucket.s3.ap-northeast-2.amazonaws.com/genres/rap_hiphop.svg" },
-  { id: 4, name: "알앤비/소울/재즈", image_background: "https://bunan-image-bucket.s3.ap-northeast-2.amazonaws.com/genres/rnb_soul_jazz.svg" },
-  { id: 5, name: "일렉트로닉/EDM", image_background: "https://bunan-image-bucket.s3.ap-northeast-2.amazonaws.com/genres/electronic_edm.svg" },
-  { id: 6, name: "락/메탈", image_background: "https://bunan-image-bucket.s3.ap-northeast-2.amazonaws.com/genres/rock_metal.svg" },
-  { id: 7, name: "우타이테/오리지널", image_background: "https://bunan-image-bucket.s3.ap-northeast-2.amazonaws.com/genres/utaite_original.svg" },
-  { id: 8, name: "발라드", image_background: "https://bunan-image-bucket.s3.ap-northeast-2.amazonaws.com/genres/ballad.svg" },
-  { id: 9, name: "가요/아이돌", image_background: "https://bunan-image-bucket.s3.ap-northeast-2.amazonaws.com/genres/kpop_idol.svg" },
-  { id: 10, name: "국악", image_background: "https://bunan-image-bucket.s3.ap-northeast-2.amazonaws.com/genres/traditional_korean.svg" },
-  { id: 11, name: "뉴에이지", image_background: "https://bunan-image-bucket.s3.ap-northeast-2.amazonaws.com/genres/new_age.svg" },
-  { id: 12, name: "뮤지컬", image_background: "https://bunan-image-bucket.s3.ap-northeast-2.amazonaws.com/genres/musical.svg" },
-  { id: 13, name: "OST/영화음악", image_background: "https://bunan-image-bucket.s3.ap-northeast-2.amazonaws.com/genres/ost_movie.svg" },
-  { id: 14, name: "레게", image_background: "https://bunan-image-bucket.s3.ap-northeast-2.amazonaws.com/genres/reggae.svg" },
-  { id: 15, name: "인디", image_background: "https://bunan-image-bucket.s3.ap-northeast-2.amazonaws.com/genres/indie.svg" },
-  { id: 16, name: "클럽뮤직", image_background: "https://bunan-image-bucket.s3.ap-northeast-2.amazonaws.com/genres/club_music.svg" },
-  { id: 17, name: "클래식", image_background: "https://bunan-image-bucket.s3.ap-northeast-2.amazonaws.com/genres/classical.svg" },
-  { id: 18, name: "CCM/종교음악", image_background: "https://bunan-image-bucket.s3.ap-northeast-2.amazonaws.com/genres/ccm_religious.svg" },
+  { id: 3, name: "랩/힙합", image_background: "https://bunan-image-bucket.s3.ap-northeast-2.amazonaws.com/genres/hiphop.jpg" },
+  { id: 4, name: "알앤비/소울/재즈", image_background: "https://bunan-image-bucket.s3.ap-northeast-2.amazonaws.com/genres/jazz.jpg" },
+  { id: 7, name: "보컬로이드/우타이테", image_background: "https://bunan-image-bucket.s3.ap-northeast-2.amazonaws.com/genres/vocaloid.jpg" },
+  { id: 5, name: "일렉트로닉/EDM", image_background: "https://bunan-image-bucket.s3.ap-northeast-2.amazonaws.com/genres/edm.jpg" },
+  { id: 6, name: "락/메탈", image_background: "https://bunan-image-bucket.s3.ap-northeast-2.amazonaws.com/genres/rock.jpg" },
+  { id: 8, name: "발라드", image_background: "https://bunan-image-bucket.s3.ap-northeast-2.amazonaws.com/genres/ballade.jpg" },
+  { id: 9, name: "가요/아이돌", image_background: "https://bunan-image-bucket.s3.ap-northeast-2.amazonaws.com/genres/kpop.jpg" },
+  { id: 10, name: "국악", image_background: "https://bunan-image-bucket.s3.ap-northeast-2.amazonaws.com/genres/korean.jpg" },
+  { id: 12, name: "뮤지컬", image_background: "https://bunan-image-bucket.s3.ap-northeast-2.amazonaws.com/genres/musical.jpg" },
+  { id: 13, name: "OST/영화음악", image_background: "https://bunan-image-bucket.s3.ap-northeast-2.amazonaws.com/genres/ost.png" },
+  { id: 14, name: "레게", image_background: "https://bunan-image-bucket.s3.ap-northeast-2.amazonaws.com/genres/jamaica.svg" },
+  { id: 15, name: "인디", image_background: "https://bunan-image-bucket.s3.ap-northeast-2.amazonaws.com/genres/inde.jpg" },
+  { id: 16, name: "클럽뮤직", image_background: "https://bunan-image-bucket.s3.ap-northeast-2.amazonaws.com/genres/concert.jpg" },
+  { id: 17, name: "클래식", image_background: "https://bunan-image-bucket.s3.ap-northeast-2.amazonaws.com/genres/classic.jpg" },
+  { id: 18, name: "CCM/종교음악", image_background: "https://bunan-image-bucket.s3.ap-northeast-2.amazonaws.com/genres/cross.svg" },
   { id: 19, name: "캐롤", image_background: "https://bunan-image-bucket.s3.ap-northeast-2.amazonaws.com/genres/carol.svg" },
-  { id: 20, name: "그 외", image_background: "https://bunan-image-bucket.s3.ap-northeast-2.amazonaws.com/genres/others.svg" },
+  { id: 20, name: "그 외", image_background: "https://bunan-image-bucket.s3.ap-northeast-2.amazonaws.com/genres/etc.svg" },
 ];
+
+// {
+//  freepic 출처 : 출처 <a href="https://kr.freepik.com/free-vector/k-pop-girls-standing-together_9452775.htm#query=%EC%95%84%EC%9D%B4%EB%8F%8C&position=0&from_view=keyword&track=sph">Freepik</a>
+// svg repo : // https://www.svgrepo.com/
+
+// }
