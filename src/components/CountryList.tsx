@@ -48,8 +48,6 @@ const CountryList = ({ selectedCountry, onSelectCountry }: Props) => {
           ))}
         <ListItem paddingY="7px">
           <HStack onClick={() => handleFold()}>
-            {/* <Image boxSize="32px" borderRadius={8} objectFit="cover" src={country.image_background} /> */}
-            {/* <TriangleDownIcon boxSize="32px" borderRadius={8} objectFit="cover" /> */}
             <Icon as={isFolded ? MdExpandMore : MdExpandLess} boxSize="32px" borderRadius={8} objectFit="cover" />
             <Button whiteSpace="normal" textAlign="left" fontSize="lg" variant="link">
               {isFolded ? "더보기" : "접기"}

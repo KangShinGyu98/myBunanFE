@@ -30,7 +30,7 @@ const NavBar = ({ onSearch, setMusicQueryEmpty }: Props) => {
   return (
     <HStack padding="10px">
       <Link to="/">
-        <Image src={logo} boxSize="60px" onClick={setMusicQueryEmpty} />
+        <Image src={"https://bunan-image-bucket.s3.ap-northeast-2.amazonaws.com/etc/logo_black.png"} width={"100%"} onClick={setMusicQueryEmpty} />
       </Link>
       <SearchInput onSearch={onSearch} />
       {/* <ColorModeSwitch /> */}
