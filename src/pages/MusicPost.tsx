@@ -1,10 +1,8 @@
 import { useParams } from "react-router-dom";
 import YouTube from "react-youtube";
 import LylicsGrid from "../components/LyricsGrid";
-import useLylics from "../hooks/useLyrics";
 import useVideoId from "../hooks/useVideoId";
-import MusicCardContainer from "../components/MusicCardContainer";
-import MusicCardSkeleton from "../components/MusicCardSkeleton";
+import { Center, Stack } from "@chakra-ui/react";
 
 const MusicPost = () => {
   const { id } = useParams(); // URL 파라미터에서 id를 가져옵니다.
@@ -16,17 +14,12 @@ const MusicPost = () => {
   };
 
   return (
-    <>
-      {isLoading && (
-        <MusicCardContainer key={0}>
-          <MusicCardSkeleton />
-        </MusicCardContainer>
-      )}
-      {data.map((videoId) => (
-        <YouTube videoId={videoId} opts={opts} key={videoId} />
-      ))}
-      <LylicsGrid postId={parseInt(id || "0")} />
-    </>
+    <Center>
+      <Stack>
+        <YouTube videoId={data[0]} opts={opts} key={data[0]} />
+        <LylicsGrid postId={parseInt(id || "0")} />
+      </Stack>
+    </Center>
   );
 };
 

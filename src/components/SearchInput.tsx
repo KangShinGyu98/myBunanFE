@@ -18,7 +18,7 @@ const SearchInput = ({ onSearch }: Props) => {
     >
       <InputGroup>
         <InputLeftElement children={<BsSearch />} />
-        <Input ref={ref} borderRadius={20} placeholder="Search Musics!" variant="filled" />
+        <Input backgroundColor="#333" ref={ref} borderRadius={20} placeholder="음악을 검색하세요!" variant="filled" />
       </InputGroup>
     </form>
   );

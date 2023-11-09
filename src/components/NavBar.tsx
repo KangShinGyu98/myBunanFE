@@ -1,18 +1,18 @@
 import { Button, HStack, Image, useToast, Text, Box } from "@chakra-ui/react";
-import logo from "../assets/logo.webp";
-import ColorModeSwitch from "./ColorModeSwitch";
 import SearchInput from "./SearchInput";
 import { Link } from "react-router-dom";
 import LoginModal from "./LoginModal";
 import SignUpModal from "./SignUpModal";
 import { useAuthContext } from "../context/AuthContext";
+import { MusicQuery } from "../pages/MainPage";
 
 interface Props {
   onSearch: (searchText: string) => void;
-  setMusicQueryEmpty: () => void;
+  setMusicQuery: (musicQuery: MusicQuery) => void;
+  musicQuery: MusicQuery;
 }
 
-const NavBar = ({ onSearch, setMusicQueryEmpty }: Props) => {
+const NavBar = ({ onSearch, setMusicQuery, musicQuery }: Props) => {
   const toast = useToast();
   const { user, isInitializing, onAuthStateChange } = useAuthContext();
   const handleLogout = () => {
@@ -30,14 +30,27 @@ const NavBar = ({ onSearch, setMusicQueryEmpty }: Props) => {
   return (
     <HStack padding="10px">
       <Link to="/">
-        <Image src={"https://bunan-image-bucket.s3.ap-northeast-2.amazonaws.com/etc/logo_black.png"} width={"100%"} onClick={setMusicQueryEmpty} />
+        <Image
+          src={"https://bunan-image-bucket.s3.ap-northeast-2.amazonaws.com/etc/logo_black.png"}
+          width={"100%"}
+          onClick={() =>
+            setMusicQuery({
+              genre: null,
+              tags: [],
+              country: null,
+              sortOrder: null,
+              searchText: "",
+              email: user?.email,
+            } as MusicQuery)
+          }
+        />
       </Link>
       <SearchInput onSearch={onSearch} />
       {/* <ColorModeSwitch /> */}
       {!user && !isInitializing ? (
         <>
-          <LoginModal />
-          <SignUpModal />
+          <LoginModal setMusicQuery={setMusicQuery} musicQuery={musicQuery} />
+          <SignUpModal setMusicQuery={setMusicQuery} musicQuery={musicQuery} />
         </>
       ) : (
         <>

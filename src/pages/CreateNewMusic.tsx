@@ -1,11 +1,10 @@
 import { useState } from "react";
-import { Box, Button, Flex } from "@chakra-ui/react";
+import { Box, Flex } from "@chakra-ui/react";
 import CountrySelector from "../components/CountrySelector";
 import GenreSelector from "../components/GenreSelector";
 import { Genre } from "../hooks/useGenres";
 import { Country } from "../hooks/useCountries";
 import NewPost from "../components/NewPost";
-import { Link } from "react-router-dom";
 
 export interface NewMusicQuery {
   genre: Genre | null;
@@ -28,9 +27,14 @@ const MainMusicList = () => {
   return (
     <>
       <Box paddingLeft={2}>
-        <Flex marginBottom={5}>
-          <Box marginRight={5}>
-            <CountrySelector selectedCountry={musicQuery.country} onSelectCountry={(country) => setMusicQuery({ ...musicQuery, country })} />
+        <Flex mb={5} ml={10} mt={10}>
+          <Box mr={5}>
+            <CountrySelector
+              selectedCountry={musicQuery.country}
+              onSelectCountry={(country) => {
+                setMusicQuery({ ...musicQuery, country });
+              }}
+            />
           </Box>
           <Box marginRight={5}>
             <GenreSelector selectedGenre={musicQuery.genre} onSelectGenre={(genre) => setMusicQuery({ ...musicQuery, genre })} />

@@ -1,5 +1,5 @@
 import { Heading } from "@chakra-ui/react";
-import { GameQuery, MusicQuery } from "../App";
+import { MusicQuery } from "../pages/MainPage";
 
 interface Props {
   musicQuery: MusicQuery;

@@ -1,16 +1,18 @@
 import { SimpleGrid, Text } from "@chakra-ui/react";
-import { MusicQuery } from "../App";
 import useMusics from "../hooks/useMusics";
 import MusicCardContainer from "./MusicCardContainer";
 import MusicCardSkeleton from "./MusicCardSkeleton";
 import MusicCard from "./MusicCard";
+import { MusicQuery } from "../pages/MainPage";
 
 interface Props {
   musicQuery: MusicQuery;
 }
 
 const MusicGrid = ({ musicQuery }: Props) => {
+  console.log("musicQuery in MusicGrid.tsx", musicQuery);
   const { data, error, isLoading } = useMusics(musicQuery);
+
   const skeletons = [1, 2, 3, 4, 5, 6];
 
   if (error) return <Text>{error}</Text>;

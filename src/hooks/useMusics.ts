@@ -1,4 +1,4 @@
-import { MusicQuery } from "../App";
+import { MusicQuery } from "../pages/MainPage";
 import useData from "./useData";
 
 //받을 때
@@ -16,6 +16,7 @@ export interface Music {
   videoId: string;
   posted: Date;
   released: Date;
+  likey: boolean;
 }
 
 const useMusics = (musicQuery: MusicQuery) =>
@@ -28,6 +29,7 @@ const useMusics = (musicQuery: MusicQuery) =>
         tags: musicQuery.tags,
         ordering: musicQuery.sortOrder,
         search: musicQuery.searchText,
+        email: musicQuery?.email,
       },
     },
     [musicQuery]

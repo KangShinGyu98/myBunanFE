@@ -20,8 +20,14 @@ import {
 import axios from "axios";
 import React, { useState } from "react";
 import { useAuthContext } from "../context/AuthContext";
+import { MusicQuery } from "../pages/MainPage";
 
-const SignUpModal = () => {
+interface Props {
+  musicQuery: MusicQuery;
+  setMusicQuery: (musicQuery: MusicQuery) => void;
+}
+
+const SignUpModal = ({ musicQuery, setMusicQuery }: Props) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { onAuthStateChange } = useAuthContext();
   const initialRef = React.useRef(null);
@@ -113,6 +119,7 @@ const SignUpModal = () => {
 
       document.cookie = `token=${response.data as string}; path=/`;
       onAuthStateChange("login");
+      setMusicQuery({ ...musicQuery, email } as MusicQuery);
 
       toast({
         position: "top",

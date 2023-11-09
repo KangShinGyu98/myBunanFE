@@ -1,10 +1,6 @@
-import React from "react";
-import { SimpleGrid, Text } from "@chakra-ui/react";
-import { MusicQuery } from "../App";
-import useMusics from "../hooks/useMusics";
+import { Center, SimpleGrid, Text } from "@chakra-ui/react";
 import MusicCardContainer from "./MusicCardContainer";
 import MusicCardSkeleton from "./MusicCardSkeleton";
-import MusicCard from "./MusicCard";
 import useLyrics from "../hooks/useLyrics";
 import LyricCard from "./LyricCard";
 
@@ -21,14 +17,7 @@ const LyricsGrid = ({ postId }: Props) => {
 
   if (error) return <Text>{error}</Text>;
   return (
-    <SimpleGrid columns={{ sm: 1, md: 1, lg: 1, xl: 1 }} padding="10px" spacing={6}>
-      {isLoading &&
-        skeletons.map((skeleton) => (
-          <MusicCardContainer key={skeleton}>
-            <MusicCardSkeleton />
-          </MusicCardContainer>
-        ))}
-      {/* 여기 youtube */}
+    <SimpleGrid columns={{ base: 1 }} padding="10px">
       {data.map((lyric) => (
         <LyricCard key={lyric.id} lyric={lyric} />
       ))}

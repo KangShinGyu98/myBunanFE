@@ -1,5 +1,3 @@
-import React from "react";
-import { MusicQuery } from "../App";
 import { Box, Button, Flex } from "@chakra-ui/react";
 import MusicHeading from "../components/MusicHeading";
 import CountrySelector from "../components/CountrySelector";
@@ -7,6 +5,7 @@ import SortSelector from "../components/SortSelector";
 import MusicGrid from "../components/MusicGrid";
 import GenreSelector from "../components/GenreSelector";
 import { Link } from "react-router-dom";
+import { MusicQuery } from "./MainPage";
 
 export interface MainMusicListProps {
   musicQuery: MusicQuery;

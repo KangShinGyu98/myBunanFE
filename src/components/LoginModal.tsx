@@ -17,8 +17,14 @@ import {
 import axios from "axios";
 import React, { useState } from "react";
 import { decodeToken, getToken, useAuthContext, User } from "../context/AuthContext";
+import { MusicQuery } from "../pages/MainPage";
 
-const LoginModal = () => {
+interface Props {
+  musicQuery: MusicQuery;
+  setMusicQuery: (musicQuery: MusicQuery) => void;
+}
+
+const LoginModal = ({ musicQuery, setMusicQuery }: Props) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   const initialRef = React.useRef(null);
@@ -42,6 +48,8 @@ const LoginModal = () => {
       onAuthStateChange("login");
       const token = response.data as string;
       const nickname = decodeToken(token)?.nickname || null;
+      setMusicQuery({ ...musicQuery, email } as MusicQuery);
+
       toast({
         position: "top",
         title: "로그인에 성공했습니다.",
