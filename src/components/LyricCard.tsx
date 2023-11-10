@@ -10,6 +10,7 @@ import {
   Input,
   InputGroup,
   InputRightElement,
+  Stack,
   Tag,
   Text,
   useToast,
@@ -20,6 +21,7 @@ import axios from "axios";
 import { set } from "mongoose";
 import { MdExpandLess, MdExpandMore } from "react-icons/md";
 import { useAuthContext } from "../context/AuthContext";
+import MyLyricComment from "./MyLyricComment";
 
 interface Props {
   lyric: Lyric;
@@ -69,21 +71,24 @@ const LyricCard = ({ lyric }: Props) => {
     if (isOpened) {
       return (
         <Box pl={75} pb={10}>
-          {lyric.content.split("\n").map((line) => (
-            <Text fontSize={"lg"}>{line}</Text>
-          ))}
+          <HStack alignItems="flex-end" justifyContent={"space-between"}>
+            <Stack spacing={0}>
+              {lyric.content.split("\n").map((line) => (
+                <Text fontSize={"lg"}>{line}</Text>
+              ))}
+            </Stack>
+            <Text>좋아요</Text>
+          </HStack>
           <HStack ml={-10} mt={2} alignItems="flex-start">
             <Icon as={MdExpandLess} onClick={handleClick} boxSize="32px" borderRadius={8} objectFit="cover" />
-            <Box>
+            <Box width={"100%"}>
               {lyricComments.map((comment) => (
-                <Text fontSize={"lg"} key={comment.id}>
-                  {comment.content}
-                </Text>
+                <MyLyricComment comment={comment} />
               ))}
             </Box>
           </HStack>
           <form onSubmit={handleSubmit}>
-            <InputGroup>
+            <InputGroup mt={3}>
               <Input type="text" value={comment} onChange={handleChange} placeholder="번안 가사를 입력하세요" mr={2} />
               <Button h="auto" type="submit" width={"5rem"}>
                 등록
@@ -101,9 +106,7 @@ const LyricCard = ({ lyric }: Props) => {
           ))}
           <HStack ml={-10} mt={2}>
             <Icon as={MdExpandMore} onClick={handleClick} boxSize="32px" borderRadius={8} objectFit="cover" />
-            <Text fontSize={"lg"} onClick={handleClick}>
-              {lyricComments[0].content}
-            </Text>
+            <Text fontSize={"lg"}>{lyricComments[0].content}</Text>
           </HStack>
         </Box>
       );

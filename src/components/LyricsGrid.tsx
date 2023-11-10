@@ -1,19 +1,20 @@
 import { Center, SimpleGrid, Text } from "@chakra-ui/react";
 import MusicCardContainer from "./MusicCardContainer";
 import MusicCardSkeleton from "./MusicCardSkeleton";
-import useLyrics from "../hooks/useLyrics";
 import LyricCard from "./LyricCard";
+import { useAuthContext } from "../context/AuthContext";
+import useLyrics from "../hooks/useLyrics";
 
 interface Props {
   postId: number;
 }
 
 const LyricsGrid = ({ postId }: Props) => {
-  const { data, error, isLoading } = useLyrics(postId);
+  const { user, isInitializing, onAuthStateChange } = useAuthContext();
+  const userNickname = user?.nickname;
+  const { data, error, isLoading } = useLyrics(postId, userNickname);
   console.log("useLyrics data :  ", data);
-  if (error) return <Text>{error}</Text>;
-
-  const skeletons = [1, 2, 3, 4, 5, 6];
+  console.log("useLyrics nickname :  ", userNickname);
 
   if (error) return <Text>{error}</Text>;
   return (

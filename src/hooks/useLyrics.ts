@@ -18,6 +18,15 @@ export interface LyricComment {
   deleted: Date;
 }
 
-const useLyrics = (id: number) => useData<Lyric>(`/musics/${id}`, {}, []);
+const useLyrics = (id: number, nickname: string) =>
+  useData<Lyric>(
+    `/musics/${id}`,
+    {
+      params: {
+        nickname: nickname,
+      },
+    },
+    []
+  );
 
 export default useLyrics;
