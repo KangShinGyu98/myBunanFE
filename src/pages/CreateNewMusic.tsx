@@ -22,7 +22,7 @@ export interface NewMusicQuery {
   lyricWriter: string;
 }
 
-const MainMusicList = () => {
+const CreateNewMusic = () => {
   const [musicQuery, setMusicQuery] = useState<NewMusicQuery>({} as NewMusicQuery);
   return (
     <>
@@ -46,4 +46,4 @@ const MainMusicList = () => {
   );
 };
 
-export default MainMusicList;
+export default CreateNewMusic;

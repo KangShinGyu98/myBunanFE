@@ -115,13 +115,20 @@ const LyricCard = ({ lyric }: Props) => {
     // lyricComments.length === 0
     return (
       <>
-        {lyric.content.split("\n").map((line) => (
-          <Text>{line}</Text>
-        ))}
+        <Stack spacing={0}>
+          {lyric.content.split("\n").map((line) => (
+            <Text fontSize={"lg"}>{line}</Text>
+          ))}
+        </Stack>
         <Text>가사를 작성하세요.</Text>
         <form onSubmit={handleSubmit}>
-          <input type="text" value={comment} onChange={handleChange} placeholder="번안 가사를 입력하세요" />
-          <button>등록</button>
+          <InputGroup mt={3}>
+            <Input type="text" value={comment} onChange={handleChange} placeholder="번안 가사를 입력하세요" mr={2} />
+            <Button h="auto" type="submit" width={"5rem"}>
+              등록
+            </Button>
+            {/* <button>등록</button> */}
+          </InputGroup>
         </form>
       </>
     );

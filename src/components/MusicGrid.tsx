@@ -10,8 +10,8 @@ interface Props {
 }
 
 const MusicGrid = ({ musicQuery }: Props) => {
-  console.log("musicQuery in MusicGrid.tsx", musicQuery);
   const { data, error, isLoading } = useMusics(musicQuery);
+  console.log("data in MusicGrid.tsx", data);
 
   const skeletons = [1, 2, 3, 4, 5, 6];
 

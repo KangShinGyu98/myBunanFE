@@ -20,7 +20,7 @@ export interface LyricComment {
 
 const useLyrics = (id: number, nickname: string) =>
   useData<Lyric>(
-    `/musics/${id}`,
+    `/lyric/${id}`,
     {
       params: {
         nickname: nickname,
