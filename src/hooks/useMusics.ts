@@ -8,6 +8,8 @@ export interface Music {
   singer: string;
   songWriter: string;
   postWriter: string;
+  lyricWriter: string;
+  remixArtist: string;
   tags: String[];
   likes: number;
   views: number;

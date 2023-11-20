@@ -15,17 +15,18 @@ import {
   Textarea,
   useToast,
 } from "@chakra-ui/react";
-import { NewMusicQuery } from "../pages/CreateNewMusic";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useAuthContext } from "../context/AuthContext";
+import { NewMusicQuery } from "../pages/UpdateMusicPost";
 
 export interface NewPostProps {
   musicQuery: NewMusicQuery;
   setMusicQuery: (arg: ((prevMusicQuery: NewMusicQuery) => NewMusicQuery) | NewMusicQuery) => void;
+  id: string | null | undefined;
 }
 
-const NewPost = ({ musicQuery, setMusicQuery }: NewPostProps) => {
+const UpdatePost = ({ musicQuery, setMusicQuery, id }: NewPostProps) => {
   const toast = useToast();
   const { user, isInitializing, onAuthStateChange } = useAuthContext();
   const navigate = useNavigate();
@@ -71,7 +72,7 @@ const NewPost = ({ musicQuery, setMusicQuery }: NewPostProps) => {
         });
         return;
       }
-      const response = await axios.post("http://localhost:8080/createNewMusic", {
+      const response = await axios.post(`http://localhost:8080/update/${id}`, {
         ...musicQuery,
         genre: musicQuery.genre?.name,
         country: musicQuery.country?.name,
@@ -80,6 +81,7 @@ const NewPost = ({ musicQuery, setMusicQuery }: NewPostProps) => {
         videoId: musicQuery.videoId.split("=")[1],
         postWriter: user?.nickname,
       });
+
       // 성공적으로 요청을 보냈을 때의 처리
       console.log("요청이 성공했습니다.");
       navigate("/");
@@ -96,30 +98,31 @@ const NewPost = ({ musicQuery, setMusicQuery }: NewPostProps) => {
           <FormControl isRequired>
             <InputGroup>
               <InputLeftAddon children="제목 *" width={20} />
-              <Input maxWidth={300} isRequired onChange={handleChange} name="title" placeholder="ex : 이메진 (IMAGINE) " />
+              <Input value={musicQuery.title} maxWidth={300} isRequired onChange={handleChange} name="title" placeholder="ex : 이메진 (IMAGINE) " />
             </InputGroup>
           </FormControl>
           <FormControl isRequired>
             <InputGroup>
               <InputLeftAddon children="가수 *" width={20} />
-              <Input maxWidth={300} onChange={handleChange} name="singer" placeholder="ex : 존 레논 (John Lennon) " />
+              <Input value={musicQuery.singer} maxWidth={300} onChange={handleChange} name="singer" placeholder="ex : 존 레논 (John Lennon) " />
             </InputGroup>
           </FormControl>
           <InputGroup>
             <InputLeftAddon children="작사" width={20} />
-            <Input maxWidth={310} onChange={handleChange} name="lyricWriter" placeholder="ex : 미상 " />
+            <Input value={musicQuery.lyricWriter} maxWidth={310} onChange={handleChange} name="lyricWriter" placeholder="ex : 미상 " />
           </InputGroup>
           <InputGroup>
             <InputLeftAddon children="작곡" width={20} />
-            <Input maxWidth={310} onChange={handleChange} name="songWriter" placeholder="ex : 미상 " />
+            <Input value={musicQuery.songWriter} maxWidth={310} onChange={handleChange} name="songWriter" placeholder="ex : 미상 " />
           </InputGroup>
           <InputGroup>
             <InputLeftAddon children="편곡" width={20} />
-            <Input maxWidth={310} onChange={handleChange} name="remixArtist" placeholder="ex : 미상 " />
+            <Input value={musicQuery.remixArtist} maxWidth={310} onChange={handleChange} name="arrangement" placeholder="ex : 미상 " />
           </InputGroup>
           <InputGroup>
             <InputLeftAddon children="발매일(Released Date)" />
             <Input
+              value={musicQuery.released ? musicQuery?.released.toISOString().substr(0, 10) : ""} // Date 객체를 "YYYY-MM-DD" 문자열로 변환하여 표시
               maxWidth={300}
               onChange={handleChange}
               type="date"
@@ -195,4 +198,4 @@ const NewPost = ({ musicQuery, setMusicQuery }: NewPostProps) => {
   );
 };
 
-export default NewPost;
+export default UpdatePost;

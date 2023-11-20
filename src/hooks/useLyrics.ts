@@ -10,6 +10,7 @@ export interface LyricComment {
   id: number;
   content: string;
   likes: number;
+  likey: boolean;
   dislikes: number;
   reports: number;
   writer: string;

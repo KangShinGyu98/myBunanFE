@@ -7,19 +7,19 @@ import { Country } from "../hooks/useCountries";
 import NewPost from "../components/NewPost";
 
 export interface NewMusicQuery {
-  genre: Genre | null;
-  tags: string[];
-  country: Country | null;
   title: string;
   singer: string;
-  videoId: string;
   songWriter: string;
   postWriter: string;
+  lyricWriter: string;
+  remixArtist: string;
+  released: Date | null;
+  videoId: string;
+  country: Country | null;
+  genre: Genre | null;
+  tags: string[];
   lyric: string;
   lyricComment: string;
-  releasedDate: Date;
-  arrangement: string;
-  lyricWriter: string;
 }
 
 const CreateNewMusic = () => {

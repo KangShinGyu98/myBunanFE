@@ -1,37 +1,22 @@
-import {
-  Button,
-  FormControl,
-  FormHelperText,
-  FormLabel,
-  Input,
-  Modal,
-  ModalBody,
-  ModalCloseButton,
-  ModalContent,
-  ModalFooter,
-  ModalHeader,
-  ModalOverlay,
-  useDisclosure,
-  useToast,
-} from "@chakra-ui/react";
+import { Button, Modal, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, useDisclosure, useToast } from "@chakra-ui/react";
 import axios from "axios";
-import React, { useState } from "react";
-import { decodeToken, getToken, useAuthContext, User } from "../context/AuthContext";
-import { MusicQuery } from "../pages/MainPage";
+import React from "react";
+import { useAuthContext } from "../context/AuthContext";
 import { Music } from "../hooks/useMusics";
+import { useNavigate } from "react-router-dom";
 
 interface Props {
   music: Music;
 }
 
-const LoginModal = ({ music }: Props) => {
+const DeleteModal = ({ music }: Props) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
-
+  const navigate = useNavigate();
   const initialRef = React.useRef(null);
 
   const toast = useToast();
 
-  const { onAuthStateChange, user } = useAuthContext();
+  const { user } = useAuthContext();
 
   const deleteHandle = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
@@ -54,6 +39,7 @@ const LoginModal = ({ music }: Props) => {
       });
       // 성공적으로 요청을 보냈을 때의 처리
       onClose();
+      navigate("/");
     } catch (error: any) {
       toast({
         position: "top",
@@ -88,4 +74,4 @@ const LoginModal = ({ music }: Props) => {
   );
 };
 
-export default LoginModal;
+export default DeleteModal;

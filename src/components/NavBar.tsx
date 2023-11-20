@@ -33,7 +33,7 @@ const NavBar = ({ onSearch, setMusicQuery, musicQuery }: Props) => {
         <Image
           src={"https://bunan-image-bucket.s3.ap-northeast-2.amazonaws.com/etc/logo_black.png"}
           width={"100%"}
-          onClick={() =>
+          onClick={() => {
             setMusicQuery({
               genre: null,
               tags: [],
@@ -41,8 +41,8 @@ const NavBar = ({ onSearch, setMusicQuery, musicQuery }: Props) => {
               sortOrder: null,
               searchText: "",
               email: user?.email,
-            } as MusicQuery)
-          }
+            } as MusicQuery);
+          }}
         />
       </Link>
       <SearchInput onSearch={onSearch} />

@@ -10,6 +10,7 @@ import MainMusicList from "./MainMusicList";
 import MusicPost from "./MusicPost";
 import CreateNewMusic from "./CreateNewMusic";
 import { AuthContext } from "../context/AuthContext";
+import UpdateMusicPost from "./UpdateMusicPost";
 
 export interface MusicQuery {
   genre: Genre | null;
@@ -71,6 +72,9 @@ const MainPage = () => {
 
           <Route path="/musics/:id" element={<MusicPost />} />
           <Route path="/create" element={<CreateNewMusic />} />
+          {/* Auth 추가하기 */}
+
+          <Route path="/update/:id" element={<UpdateMusicPost />} />
 
           {/* 기타 등등 */}
           <Route path="*" element={<MainMusicList musicQuery={musicQuery} setMusicQuery={setMusicQuery} />} />

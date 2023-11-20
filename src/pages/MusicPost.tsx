@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { Link, redirect, useParams } from "react-router-dom";
 import YouTube from "react-youtube";
 import LylicsGrid from "../components/LyricsGrid";
 import { Box, Button, Center, HStack, Spinner, Stack, Text, useToast } from "@chakra-ui/react";
@@ -36,48 +36,16 @@ const MusicPost = () => {
     width: "400",
   };
 
-  const toast = useToast();
-
-  const updateMusicPost = async (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.preventDefault();
-    // redirect to update page
-  };
-
-  const deleteMusicPost = async (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.preventDefault();
-    try {
-      const response = await axios.post("http://localhost:8080/deleteMusicPost", {
-        nickname: user?.nickname,
-      });
-      toast({
-        position: "top",
-        title: `${user?.nickname} 님의 게시글이 삭제되었습니다.`,
-        status: "success",
-        duration: 2000,
-        isClosable: true,
-      });
-      // 성공적으로 요청을 보냈을 때의 처리
-    } catch (error: any) {
-      toast({
-        position: "top",
-        title: `${user?.nickname} 님의 게시글 삭제에 실패했습니다.`,
-        description: `${error?.response?.data}`,
-        status: "error",
-        duration: 3000,
-        isClosable: true,
-      });
-      // 요청 실패 시의 처리
-    }
-  };
-
   return isLoading ? (
     <Spinner thickness="4px" speed="0.65s" emptyColor="gray.200" color="blue.500" size="xl" />
   ) : (
     <>
-      {responseData?.postWriter == user?.nickname || (
+      {responseData?.postWriter == user?.nickname && (
         <HStack>
           <DeleteModal music={responseData as Music} />
-          <Button onClick={updateMusicPost}>수정</Button>
+          <Link to={`/update/${id}`}>
+            <Button>수정</Button>
+          </Link>
         </HStack>
       )}
       <Center>

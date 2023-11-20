@@ -6,6 +6,7 @@ import MusicGrid from "../components/MusicGrid";
 import GenreSelector from "../components/GenreSelector";
 import { Link } from "react-router-dom";
 import { MusicQuery } from "./MainPage";
+import { useEffect } from "react";
 
 export interface MainMusicListProps {
   musicQuery: MusicQuery;

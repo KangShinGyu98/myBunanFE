@@ -130,7 +130,7 @@ const MusicCard = ({ music }: Props) => {
           </HStack>
           <Text> 좋아요 : {likes}</Text>
           <Text>발매 : {music.released ? new Date(music.released).toISOString().split("T")[0].replaceAll("-", ".") : ""}</Text>
-          <Text>등록 : {music.posted ? new Date(music.released).toISOString().split("T")[0].replaceAll("-", ".") : ""}</Text>
+          <Text>등록 : {music.posted ? new Date(music.posted).toISOString().split("T")[0].replaceAll("-", ".") : ""}</Text>
           <Text>글쓴이 : {music.postWriter}</Text>
         </CardBody>
       </Link>
