@@ -35,9 +35,10 @@ const UpdateMusicPost = () => {
     const getMusicPost = async () => {
       try {
         const response = await axios.get(`http://localhost:8080/update/${id}`);
+        response.data.released = new Date(response.data.released);
+        response.data.videoId = "https://www.youtube.com/watch?v=" + response.data.videoId;
         setMusicQuery(response.data); // 응답 데이터 설정
         console.log("response", response.data);
-        console.log("musicQuery", musicQuery);
         setIsLoading(false);
       } catch (error) {
         console.error("Error fetching music post:", error);

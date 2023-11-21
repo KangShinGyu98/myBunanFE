@@ -19,6 +19,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useAuthContext } from "../context/AuthContext";
 import { NewMusicQuery } from "../pages/UpdateMusicPost";
+import { useEffect } from "react";
 
 export interface NewPostProps {
   musicQuery: NewMusicQuery;
@@ -27,6 +28,10 @@ export interface NewPostProps {
 }
 
 const UpdatePost = ({ musicQuery, setMusicQuery, id }: NewPostProps) => {
+  useEffect(() => {
+    console.log("musicQuery", musicQuery);
+  }, [musicQuery]);
+
   const toast = useToast();
   const { user, isInitializing, onAuthStateChange } = useAuthContext();
   const navigate = useNavigate();
@@ -84,6 +89,7 @@ const UpdatePost = ({ musicQuery, setMusicQuery, id }: NewPostProps) => {
 
       // 성공적으로 요청을 보냈을 때의 처리
       console.log("요청이 성공했습니다.");
+      // toast
       navigate("/");
     } catch (error) {
       // 요청 실패 시의 처리
@@ -122,7 +128,11 @@ const UpdatePost = ({ musicQuery, setMusicQuery, id }: NewPostProps) => {
           <InputGroup>
             <InputLeftAddon children="발매일(Released Date)" />
             <Input
-              value={musicQuery.released ? musicQuery?.released.toISOString().substr(0, 10) : ""} // Date 객체를 "YYYY-MM-DD" 문자열로 변환하여 표시
+              value={
+                typeof musicQuery?.released === "object" && musicQuery?.released !== null && "toISOString" in musicQuery?.released
+                  ? musicQuery?.released.toISOString().substring(0, 10)
+                  : "2023-12-08"
+              }
               maxWidth={300}
               onChange={handleChange}
               type="date"
@@ -133,7 +143,13 @@ const UpdatePost = ({ musicQuery, setMusicQuery, id }: NewPostProps) => {
           <FormControl isRequired>
             <InputGroup>
               <InputLeftAddon children="Youtube 주소 *" />
-              <Input maxWidth={500} onChange={handleChange} name="videoId" placeholder="ex : https://www.youtube.com/watch?v=YkgkThdzX-8" />
+              <Input
+                value={musicQuery.videoId}
+                maxWidth={500}
+                onChange={handleChange}
+                name="videoId"
+                placeholder="ex : https://www.youtube.com/watch?v=YkgkThdzX-8"
+              />
             </InputGroup>
           </FormControl>
           <Grid
@@ -161,6 +177,7 @@ const UpdatePost = ({ musicQuery, setMusicQuery, id }: NewPostProps) => {
                 </Text>
 
                 <Textarea
+                  value={musicQuery.lyric}
                   size="md"
                   name="lyric"
                   minHeight="500px"
@@ -178,6 +195,7 @@ const UpdatePost = ({ musicQuery, setMusicQuery, id }: NewPostProps) => {
                   반드시 문단 사이는 한줄 띄워야 합니다.
                 </Text>
                 <Textarea
+                  value={musicQuery.lyricComment}
                   size="md"
                   name="lyricComment"
                   onChange={handleTextAreaChange}

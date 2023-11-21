@@ -73,8 +73,10 @@ const LyricCard = ({ lyric }: Props) => {
         <Box pl={75} pb={10}>
           <HStack alignItems="flex-end" justifyContent={"space-between"}>
             <Stack spacing={0}>
-              {lyric.content.split("\n").map((line) => (
-                <Text fontSize={"lg"}>{line}</Text>
+              {lyric.content.split("\n").map((line, idx) => (
+                <Text key={idx} fontSize={"lg"}>
+                  {line}
+                </Text>
               ))}
             </Stack>
             <Text>좋아요</Text>
@@ -82,8 +84,8 @@ const LyricCard = ({ lyric }: Props) => {
           <HStack ml={-10} mt={2} alignItems="flex-start">
             <Icon as={MdExpandLess} onClick={handleClick} boxSize="32px" borderRadius={8} objectFit="cover" />
             <Box width={"100%"}>
-              {lyricComments.map((comment) => (
-                <MyLyricComment comment={comment} />
+              {lyricComments.map((comment, idx) => (
+                <MyLyricComment key={idx} comment={comment} />
               ))}
             </Box>
           </HStack>
@@ -101,8 +103,10 @@ const LyricCard = ({ lyric }: Props) => {
     } else {
       return (
         <Box pl={75} pb={10}>
-          {lyric.content.split("\n").map((line) => (
-            <Text fontSize={"lg"}>{line}</Text>
+          {lyric.content.split("\n").map((line, idx) => (
+            <Text key={idx} fontSize={"lg"}>
+              {line}
+            </Text>
           ))}
           <HStack ml={-10} mt={2}>
             <Icon as={MdExpandMore} onClick={handleClick} boxSize="32px" borderRadius={8} objectFit="cover" />
@@ -116,8 +120,10 @@ const LyricCard = ({ lyric }: Props) => {
     return (
       <>
         <Stack spacing={0}>
-          {lyric.content.split("\n").map((line) => (
-            <Text fontSize={"lg"}>{line}</Text>
+          {lyric.content.split("\n").map((line, idx) => (
+            <Text key={idx} fontSize={"lg"}>
+              {line}
+            </Text>
           ))}
         </Stack>
         <Text>가사를 작성하세요.</Text>
