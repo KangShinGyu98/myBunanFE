@@ -3,6 +3,7 @@ import { BsChevronDown } from "react-icons/bs";
 // import { Platform } from "../hooks/useGames";
 // import usePlatforms from "../hooks/usePlatforms";
 import useCountries, { Country } from "../hooks/useCountries";
+import { useEffect } from "react";
 
 interface Props {
   onSelectCountry: (country: Country | null) => void;
@@ -11,6 +12,9 @@ interface Props {
 
 const CountrySelector = ({ onSelectCountry, selectedCountry }: Props) => {
   const { data, error } = useCountries();
+  useEffect(() => {
+    console.log("selectedCountry : ", selectedCountry);
+  }, [selectedCountry]);
 
   if (error) return null;
 

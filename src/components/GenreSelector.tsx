@@ -4,6 +4,7 @@ import { BsChevronDown } from "react-icons/bs";
 // import usePlatforms from "../hooks/usePlatforms";
 import useCountries, { Country } from "../hooks/useCountries";
 import useGenres, { Genre } from "../hooks/useGenres";
+import { useEffect } from "react";
 
 interface Props {
   onSelectGenre: (genre: Genre | null) => void;
@@ -12,7 +13,9 @@ interface Props {
 
 const GenreSelector = ({ onSelectGenre, selectedGenre }: Props) => {
   const { data, error } = useGenres();
-
+  useEffect(() => {
+    console.log("selectedGenre : ", selectedGenre);
+  }, [selectedGenre]);
   if (error) return null;
 
   return (
