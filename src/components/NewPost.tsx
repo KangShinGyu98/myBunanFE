@@ -71,7 +71,7 @@ const NewPost = ({ musicQuery, setMusicQuery }: NewPostProps) => {
         });
         return;
       }
-      const response = await axios.post("http://localhost:8080/createNewMusic", {
+      const response = await axios.post("https://bunanbe.shop/createNewMusic", {
         ...musicQuery,
         genre: musicQuery.genre?.name,
         country: musicQuery.country?.name,

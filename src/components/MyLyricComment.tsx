@@ -27,7 +27,7 @@ const MyLyricComment = ({ comment }: Props) => {
     }
 
     try {
-      const response = await axios.post("http://localhost:8080/lyricComment/like", {
+      const response = await axios.post("https://bunanbe.shop/lyricComment/like", {
         lyricCommentId: comment.id,
         email: user?.email,
       });

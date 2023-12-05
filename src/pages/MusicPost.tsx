@@ -16,7 +16,7 @@ const MusicPost = () => {
   useEffect(() => {
     const getMusicPost = async () => {
       try {
-        const response = await axios.get(`http://localhost:8080/music/${id}`);
+        const response = await axios.get(`https://bunanbe.shop/music/${id}`);
         setResponseData(response.data); // 응답 데이터 설정
         console.log("response", response);
 

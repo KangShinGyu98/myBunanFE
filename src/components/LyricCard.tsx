@@ -51,7 +51,7 @@ const LyricCard = ({ lyric }: Props) => {
       return;
     }
     try {
-      const response = await axios.post(`http://localhost:8080/lyricInput`, {
+      const response = await axios.post(`https://bunanbe.shop/lyricInput`, {
         content: comment,
         writer: user?.nickname, // 나중에 수정해야함 "test
         lyricId: lyric.id,

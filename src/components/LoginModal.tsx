@@ -39,7 +39,7 @@ const LoginModal = ({ musicQuery, setMusicQuery }: Props) => {
   const login = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-      const response = await axios.post("http://localhost:8080/member/login", {
+      const response = await axios.post("https://bunanbe.shop/member/login", {
         email: email,
         password: password,
       });

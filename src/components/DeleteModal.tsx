@@ -21,7 +21,7 @@ const DeleteModal = ({ music }: Props) => {
   const deleteHandle = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     try {
-      const response = await axios.delete("http://localhost:8080/music/delete", {
+      const response = await axios.delete("https://bunanbe.shop/music/delete", {
         params: {
           nickname: user?.nickname,
           email: user?.email,

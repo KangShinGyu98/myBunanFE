@@ -77,7 +77,7 @@ const UpdatePost = ({ musicQuery, setMusicQuery, id }: NewPostProps) => {
         });
         return;
       }
-      const response = await axios.post(`http://localhost:8080/update/${id}`, {
+      const response = await axios.post(`https://bunanbe.shop/update/${id}`, {
         ...musicQuery,
         genre: musicQuery.genre?.name,
         country: musicQuery.country?.name,

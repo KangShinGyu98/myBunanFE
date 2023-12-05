@@ -46,7 +46,7 @@ const MusicCard = ({ music }: Props) => {
     }
 
     try {
-      const response = await axios.post("http://localhost:8080/like", {
+      const response = await axios.post("https://bunanbe.shop/like", {
         musicId: music.id,
         email: user?.email,
       });

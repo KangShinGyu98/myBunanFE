@@ -47,7 +47,7 @@ const SignUpModal = ({ musicQuery, setMusicQuery }: Props) => {
   const nicknameCheck = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     try {
-      const response = await axios.post("http://localhost:8080/member/nicknameCheck", {
+      const response = await axios.post("https://bunanbe.shop/member/nicknameCheck", {
         nickname: nickname,
       });
 
@@ -82,7 +82,7 @@ const SignUpModal = ({ musicQuery, setMusicQuery }: Props) => {
       isClosable: true,
     });
     try {
-      const response = await axios.post("http://localhost:8080/mail/email", {
+      const response = await axios.post("https://bunanbe.shop/mail/email", {
         email: email,
       });
 
@@ -109,7 +109,7 @@ const SignUpModal = ({ musicQuery, setMusicQuery }: Props) => {
   const signUp = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-      const response = await axios.post("http://localhost:8080/member/signUp", {
+      const response = await axios.post("https://bunanbe.shop/member/signUp", {
         nickname: nickname,
         email: email,
         password: password,

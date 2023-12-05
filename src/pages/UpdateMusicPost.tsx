@@ -36,7 +36,7 @@ const UpdateMusicPost = () => {
   useEffect(() => {
     const getMusicPost = async () => {
       try {
-        const response = await axios.get(`http://localhost:8080/update/${id}`);
+        const response = await axios.get(`https://bunanbe.shop/update/${id}`);
         response.data.released = new Date(response.data.released);
         response.data.videoId = "https://www.youtube.com/watch?v=" + response.data.videoId;
 
