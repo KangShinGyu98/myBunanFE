@@ -9,7 +9,6 @@ import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 import { FaRegPaperPlane } from "react-icons/fa";
 import axios from "axios";
 import { useAuthContext } from "../context/AuthContext";
-import { set } from "mongoose";
 
 interface Props {
   music: Music;

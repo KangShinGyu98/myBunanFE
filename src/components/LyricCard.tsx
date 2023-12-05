@@ -18,7 +18,6 @@ import {
 import { useState } from "react";
 import { Lyric } from "../hooks/useLyrics";
 import axios from "axios";
-import { set } from "mongoose";
 import { MdExpandLess, MdExpandMore } from "react-icons/md";
 import { useAuthContext } from "../context/AuthContext";
 import MyLyricComment from "./MyLyricComment";
