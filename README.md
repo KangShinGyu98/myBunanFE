@@ -1,35 +1,17 @@
-# GameHub
+# 프로젝트 소개
+- 해외 좋은 곡들을 번역할 때, 원곡의 느낌을 살려서 발음과 뜻을 비슷하게 번역하는 것을 번안이라고 합니다.
+- 해당 사이트에서는 누구나 좋아하는 해외의 곡을 올리고, 가사를 번안해볼 수 있도록 제작했습니다. 
+- 혼자서 기획부터 배포까지 풀스택 웹사이트를 만들어보기 위해서 시작한 프로젝트의 백엔드 리포입니다. 
+- 사이트 링크 - https://www.bunan.co.kr/
+# 기술스택 
+ - React, TypeScript, Vite
+   
+# 배포 
+ - vercel
+ 
+---
+# 특이사항, 자랑할 거리 
+ 1. CSS library 로 Chakra UI 를 사용했습니다.
+ 2. Code with Mosh 의 클론코딩을 참고해서 작성했습니다. 
 
-GameHub is a video game discovery web app that helps you find new and interesting games to play. With GameHub, you can search for games by platform, genre, and more.
-
-This is the project we build in my Ultimate React course. You can find the full course at: https://codewithmosh.com
-
-## Getting Started
-
-To get started with GameHub, follow these steps:
-
-1. Clone this repository to your local machine.
-2. Run `npm install` to install the required dependencies.
-3. Get a RAWG API key at https://rawg.io/apidocs. You'll have to create an account first.
-4. Add the API key to **src/services/api-client.ts**
-5. Run `npm run dev` to start the web server.
-
-## About the Course
-
-I have designed this course to teach you everything you need to know to become a proficient React developer. This course is the first part of a two-part series, covering the fundamentals. You'll learn how to:
-
-- Build front-end apps with React and TypeScript
-- Build reusable function components
-- Style your components using vanilla CSS, CSS modules, and CSS-in-JS
-- Manage component state
-- Build forms with React Hook Forms
-- Implement form validation using Zod
-- Connect your React apps to the backend
-- Deploy your React apps
-- Use VSCode shortcuts to increase your productivity
-- Write clean code like a pro
-- Apply best practices
-
-By the end of this course, you'll have a solid understanding of React and be able to build real-world applications with React and TypeScript.
-
-You can find the full course at: https://codewithmosh.com
+You can find the full course at: [https://codewithmosh.com](https://codewithmosh.com/p/ultimate-react-part1)
