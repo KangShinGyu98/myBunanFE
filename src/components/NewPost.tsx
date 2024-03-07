@@ -167,7 +167,7 @@ const NewPost = ({ musicQuery, setMusicQuery }: NewPostProps) => {
               </FormControl>
             </GridItem>
             <GridItem area="adp">
-              <FormControl isRequired>
+              <FormControl>
                 <Heading margin="8px" size={"lg"}>
                   번안 가사 (선택)
                 </Heading>
