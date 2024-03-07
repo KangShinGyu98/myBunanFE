@@ -169,7 +169,7 @@ const NewPost = ({ musicQuery, setMusicQuery }: NewPostProps) => {
             <GridItem area="adp">
               <FormControl isRequired>
                 <Heading margin="8px" size={"lg"}>
-                  번안 가사 *
+                  번안 가사 (선택)
                 </Heading>
                 <Text mb="8px" size={"sm"}>
                   반드시 문단 사이는 한줄 띄워야 합니다.
