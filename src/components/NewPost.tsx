@@ -76,7 +76,7 @@ const NewPost = ({ musicQuery, setMusicQuery }: NewPostProps) => {
         genre: musicQuery.genre?.name,
         country: musicQuery.country?.name,
         lyric: musicQuery.lyric.split("\n\n"),
-        lyricComment: musicQuery?.lyricComment ? musicQuery.lyricComment.split("\n") : undefined,
+        lyricComment: musicQuery?.lyricComment ? musicQuery.lyricComment.split("\n\n") : undefined,
         videoId: musicQuery.videoId.split("=")[1],
         postWriter: user?.nickname,
       });
