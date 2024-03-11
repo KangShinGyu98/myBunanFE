@@ -81,11 +81,9 @@ const NewPost = ({ musicQuery, setMusicQuery }: NewPostProps) => {
         postWriter: user?.nickname,
       });
       // 성공적으로 요청을 보냈을 때의 처리
-      console.log("요청이 성공했습니다.");
       navigate("/");
     } catch (error) {
       // 요청 실패 시의 처리
-      console.error("요청이 실패했습니다.", error);
     }
   };
 

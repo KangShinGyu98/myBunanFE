@@ -10,7 +10,6 @@ import DeleteModal from "../components/DeleteModal";
 
 const MusicPost = () => {
   const { id } = useParams(); // URL 파라미터에서 id를 가져옵니다.
-  console.log("id", id);
   const [responseData, setResponseData] = useState({} as Music); // 응답 데이터 상태 추가
   const [isLoading, setIsLoading] = useState(true); // 로딩 상태 추가
   useEffect(() => {
@@ -18,7 +17,6 @@ const MusicPost = () => {
       try {
         const response = await axios.get(`https://bunanbe.shop/music/${id}`);
         setResponseData(response.data); // 응답 데이터 설정
-        console.log("response", response);
 
         setIsLoading(false);
       } catch (error) {

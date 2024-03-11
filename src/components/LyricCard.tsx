@@ -50,20 +50,34 @@ const LyricCard = ({ lyric }: Props) => {
       });
       return;
     }
+    if (comment === "") {
+      toast({
+        position: "top",
+        title: "가사 내용을 입력해주세요.",
+        status: "error",
+        duration: 2000,
+        isClosable: true,
+      });
+      return;
+    }
     try {
       const response = await axios.post(`https://bunanbe.shop/lyricInput`, {
         content: comment,
         writer: user?.nickname, // 나중에 수정해야함 "test
         lyricId: lyric.id,
       });
-
-      setLyricComments([...lyricComments, response.data]);
+      const responseData = await response.data;
+      if (!responseData) {
+        // responseData가 null이거나 비어있는 경우 새로고침을 수행합니다.
+        window.location.reload();
+        return; // 새로고침 후 함수를 종료합니다.
+      }
+      setLyricComments([...lyricComments, responseData]);
       setComment("");
       // 성공적으로 요청을 보냈을 때의 처리
     } catch (error) {
       // 요청 실패 시의 처리
     }
-    console.log(comment);
   };
 
   if (lyricComments.length > 0) {

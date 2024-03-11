@@ -13,8 +13,6 @@ const LyricsGrid = ({ postId }: Props) => {
   const { user, isInitializing, onAuthStateChange } = useAuthContext();
   const userNickname = user?.nickname;
   const { data, error, isLoading } = useLyrics(postId, userNickname);
-  console.log("useLyrics data :  ", data);
-  console.log("useLyrics nickname :  ", userNickname);
 
   if (error) return <Text>{error}</Text>;
   return (

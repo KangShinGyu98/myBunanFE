@@ -11,9 +11,7 @@ interface Props {
 
 const GenreSelector = ({ onSelectGenre, selectedGenre }: Props) => {
   const { data, error } = useGenres();
-  useEffect(() => {
-    console.log("selectedGenre : ", selectedGenre);
-  }, [selectedGenre]);
+  useEffect(() => {}, [selectedGenre]);
   if (error) return null;
 
   return (

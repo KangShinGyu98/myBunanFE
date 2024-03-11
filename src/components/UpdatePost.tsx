@@ -28,9 +28,7 @@ export interface NewPostProps {
 }
 
 const UpdatePost = ({ musicQuery, setMusicQuery, id }: NewPostProps) => {
-  useEffect(() => {
-    console.log("musicQuery", musicQuery);
-  }, [musicQuery]);
+  useEffect(() => {}, [musicQuery]);
 
   const toast = useToast();
   const { user, isInitializing, onAuthStateChange } = useAuthContext();
@@ -88,12 +86,10 @@ const UpdatePost = ({ musicQuery, setMusicQuery, id }: NewPostProps) => {
       });
 
       // 성공적으로 요청을 보냈을 때의 처리
-      console.log("요청이 성공했습니다.");
       // toast
       navigate("/");
     } catch (error) {
       // 요청 실패 시의 처리
-      console.error("요청이 실패했습니다.", error);
     }
   };
 

@@ -29,7 +29,6 @@ const UpdateMusicPost = () => {
   const [musicQuery, setMusicQuery] = useState<NewMusicQuery>({} as NewMusicQuery);
   const { id } = useParams(); // URL 파라미터에서 id를 가져옵니다.
   const toast = useToast();
-  // console.log("id", id);
   const [isLoading, setIsLoading] = useState(true); // 로딩 상태 추가
   const countries = useCountries().data;
   const genres = useGenres().data;
@@ -44,17 +43,14 @@ const UpdateMusicPost = () => {
         response.data.genre = genres.find((genre) => genre.name === response.data.genre);
 
         setMusicQuery(response.data); // 응답 데이터 설정
-        console.log("response", response.data);
         setIsLoading(false);
       } catch (error) {
-        console.error("Error fetching music post:", error);
         setIsLoading(false);
       }
     };
     getMusicPost();
   }, [id]); // id가 변경될 때 요청 다시 보냄
   // useEffect(() => {
-  //   // console.log("musicQuery", musicQuery);
   // }, [musicQuery]); // musicQuery가 변경될 때마다 실행
   return isLoading ? (
     <Spinner thickness="4px" speed="0.65s" emptyColor="gray.200" color="blue.500" size="xl" />

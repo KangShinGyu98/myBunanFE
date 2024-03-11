@@ -10,9 +10,7 @@ interface Props {
 
 const CountrySelector = ({ onSelectCountry, selectedCountry }: Props) => {
   const { data, error } = useCountries();
-  useEffect(() => {
-    console.log("selectedCountry : ", selectedCountry);
-  }, [selectedCountry]);
+  useEffect(() => {}, [selectedCountry]);
 
   if (error) return null;
 
