@@ -1,6 +1,6 @@
-import { Button, HStack, Image, useToast, Text, Box } from "@chakra-ui/react";
+import { Button, HStack, Image, useToast, Text, Box, Center, Link } from "@chakra-ui/react";
 import SearchInput from "./SearchInput";
-import { Link } from "react-router-dom";
+
 import LoginModal from "./LoginModal";
 import SignUpModal from "./SignUpModal";
 import { useAuthContext } from "../context/AuthContext";
@@ -29,7 +29,7 @@ const NavBar = ({ onSearch, setMusicQuery, musicQuery }: Props) => {
 
   return (
     <HStack padding="10px">
-      <Link to="/">
+      <Link href="/">
         <Image
           src={"https://bunan-image-bucket.s3.ap-northeast-2.amazonaws.com/etc/logo_black.png"}
           width={"100%"}
