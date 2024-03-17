@@ -4,7 +4,7 @@
 - 혼자서 기획부터 배포까지 풀스택 웹사이트를 만들어보기 위해서 시작한 프로젝트의 백엔드 리포입니다. 
 - 사이트 링크 - https://www.bunan.co.kr/
 # 기술스택 
- - React, TypeScript, Vite
+ - React, TypeScript, Vite, Chakra-UI
    
 # 배포 
  - vercel
@@ -13,5 +13,3 @@
 # 특이사항, 자랑할 거리 
  1. CSS library 로 Chakra UI 를 사용했습니다.
  2. Code with Mosh 의 클론코딩을 참고해서 작성했습니다. 
-
-You can find the full course at: [https://codewithmosh.com](https://codewithmosh.com/p/ultimate-react-part1)
